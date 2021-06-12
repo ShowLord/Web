@@ -5,8 +5,6 @@
     list-style: none;
   }
 
-
-
 body{
     font-family: 'Noto Sans TC', sans-serif;
 }
@@ -17,6 +15,7 @@ body{
     max-width: 1920px;
     width: 100%;
     padding: 0;
+    position: relative;
 }
 
 .sideBar{
@@ -230,3 +229,184 @@ body{
 .cell.toDay{
     background-color: #F1F1F1;
 }
+
+
+
+.mask{
+    backdrop-filter: blur(3px);
+    background-color: rgb(138, 139, 140, 0.1);
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+   
+}
+
+.color-picker{
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    margin: 8% 0 15% 0;
+}
+
+
+.color-picker button{
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+}
+
+.color-picker button:hover{
+    cursor: pointer;
+    border: #BBAF8C 2px solid ;
+}
+
+.color-picker button.focus{
+    border: #BBAF8C 2px solid ;
+}
+
+.color-picker .red{background-color:#FF8A8C;}
+.color-picker .yellow{background-color:#FFCD6D;}
+.color-picker .green{background-color:#BBD780;}
+.color-picker .blue{background-color:#7A8EF8;}
+.color-picker .purple{background-color:#C0B4EA;}
+
+label{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: #B3B3B3;
+    width: 100%;
+    margin-top: 3%;
+}
+
+input{
+    background: rgba(205, 205, 208, 0.2);
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 3%;
+    padding:2% 5% 2% 5% ;
+    caret-color: #B3B3B3;
+    font-size: 15px;
+    color: #393939;
+    width: 90%;
+
+
+}
+
+input::placeholder{
+    color:  #C7C7C7;
+}
+
+.calendar-form input{
+    
+    height: 40px;
+}
+.calendar-form .creat-calendar{
+    background-color: #4C5760;
+    color: #FFFFFF;
+    border-radius: 20px;
+    width: 100%;
+    font-size: 18px;
+    padding: 3%;
+    margin-top: 20%;
+    border:none;
+    outline: none;
+    cursor: pointer;
+
+}
+
+.calendar-window .close{
+    position:absolute;
+    right: 8%;
+    top: 5%;
+    cursor: pointer;
+
+}
+
+
+/* Calendar-form */
+
+.calendar-form .calendar-window{
+    height: 100vh;
+    width: 25%;
+    background-color: #FCFCFC;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.calendar-form .from{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin: 40% 15% 0 15%;
+}
+
+
+
+.calendar-form .section{
+    color: #393939;
+    font-weight: 900;
+    font-size: 45px;
+
+}
+
+
+/* Plan-form  */
+
+.plan .plan-window{
+    height: 100vh;
+    width: 30%;
+    background-color: #FCFCFC;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    
+}
+
+/* calendar-card */
+
+.calendar-list{
+    width: 60%;
+    height: 50vh;
+    margin-top: 8%;
+}
+
+.calendar-card{
+    width:100%;
+    height: 30%;
+    background-color: #FFFFFF;
+    box-shadow: 1px 4px 5px rgba(76, 87, 96, 0.08);
+    border-radius: 20px;   
+    margin-top: 8%;
+    display: flex;
+
+
+    
+}
+
+.calendar-card .content{
+    width: 88%;
+    margin: 2% 6% 20% 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.calendar-card .title{
+    color: #393939;
+    font-size: 26px;
+
+
+}
+
+.calendar-card svg{
+}
+
+
