@@ -13,7 +13,7 @@ export default function SideBar(props) {
   return (
     <div className="sideBar">
       <img className="logo" src={require('img/Logo.png')} alt="logo" />
-      <button onClick={atAddCalendar}> Add Calendar ＋ </button>
+      <button onClick={atAddCalendar}> 新增日曆 ＋ </button>
       <div className="calendar-list">
         {
         infoList.map((ele) => (

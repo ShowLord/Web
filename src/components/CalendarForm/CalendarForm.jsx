@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
+import ColorPicker from '../FormComponents/ColorPicker';
 
 export default function CalendarForm(props) {
   const { formStatus, getCalendarInfo } = props;
-
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { formStatus(false); }
   };
@@ -10,16 +10,16 @@ export default function CalendarForm(props) {
 
   const calendarInfo = { };
   const pickColor = (e) => {
-    if (e.target !== e.currentTarget) {
-      const color = getComputedStyle(e.target).backgroundColor;
-      calendarInfo.color = color;
-    }
+    const color = getComputedStyle(e.target).backgroundColor;
+    calendarInfo.color = color;
+    console.log(calendarInfo);
   };
 
   const atSubmit = () => {
     const title = titleRef.current.value;
     if (title !== '') {
       calendarInfo.title = title;
+      console.log(calendarInfo);
     }
 
     if (calendarInfo.title && calendarInfo.color) {
@@ -36,22 +36,16 @@ export default function CalendarForm(props) {
       <div className="mask" onClick={closeItem}>
         <div className="calendar-window">
           <img className="close" src={require('img/close.png')} alt="close" onClick={closeItem} />
-          <div className="from">
+          <div className="form">
             <div className="section"> 新增日曆</div>
-            <div className="color-picker" onClick={pickColor}>
-              <button aria-label="color" className="red" />
-              <button aria-label="color" className="yellow" />
-              <button aria-label="color" className="green" />
-              <button aria-label="color" className="blue" />
-              <button aria-label="color" className="purple" />
-            </div>
+            <ColorPicker pickColor={pickColor} />
             <label htmlFor="calendar-title" className="title">標題
               <input type="input" name="title" id="calendar-title" ref={titleRef} />
             </label>
             <label htmlFor="collaborator" className="collaborator">新增協作者
               <input type="input" name="collaborator" id="collaborator" placeholder="輸入協作者姓名或信箱" />
             </label>
-            <button className="creat-calendar" onClick={atSubmit}> 新增日曆 ＋ </button>
+            <button className="submit" onClick={atSubmit}> 新增日曆 ＋ </button>
           </div>
         </div>
       </div>

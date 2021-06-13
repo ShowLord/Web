@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -125,9 +126,8 @@ body{
 }
 
 .Nav div{
-    width: 15%;
+    width: 20%;
     height: 35px;
-   
     line-height: 30px;
     
 }
@@ -246,7 +246,7 @@ body{
 .color-picker{
     display: flex;
     justify-content: space-between;
-    width: 65%;
+    width: 220px;
     margin: 8% 0 15% 0;
 }
 
@@ -263,7 +263,7 @@ body{
     border: #BBAF8C 2px solid ;
 }
 
-.color-picker button.focus{
+.color-picker button.chosen{
     border: #BBAF8C 2px solid ;
 }
 
@@ -301,11 +301,11 @@ input::placeholder{
     color:  #C7C7C7;
 }
 
-.calendar-form input{
+ input{
     
     height: 40px;
 }
-.calendar-form .creat-calendar{
+.submit{
     background-color: #4C5760;
     color: #FFFFFF;
     border-radius: 20px;
@@ -319,13 +319,15 @@ input::placeholder{
 
 }
 
-.calendar-window .close{
+ .close{
     position:absolute;
     right: 8%;
     top: 5%;
     cursor: pointer;
 
 }
+
+
 
 
 /* Calendar-form */
@@ -337,20 +339,23 @@ input::placeholder{
     position: absolute;
     right: 0;
     top: 0;
+    display: flex;
 }
 
-.calendar-form .from{
+.form{
     display: flex;
     flex-direction: column;
     align-items:flex-start;
-    margin: 40% 15% 0 15%;
+    margin: auto 15%;
+    /* background-color: tomato; */
+    width: 100%;
 }
 
 
 
-.calendar-form .section{
+.section{
     color: #393939;
-    font-weight: 900;
+    font-weight: 700;
     font-size: 45px;
 
 }
@@ -365,7 +370,8 @@ input::placeholder{
     position: absolute;
     right: 0;
     top: 0;
-    display: none;
+    display: flex;
+
     
 }
 
@@ -379,34 +385,68 @@ input::placeholder{
 
 .calendar-card{
     width:100%;
-    height: 30%;
+    height: 20%;
     background-color: #FFFFFF;
     box-shadow: 1px 4px 5px rgba(76, 87, 96, 0.08);
     border-radius: 20px;   
     margin-top: 8%;
-    display: flex;
-
-
-    
+    display: flex;  
+    justify-content: center;
+    position: relative;
+    user-select: none; 
 }
 
 .calendar-card .content{
     width: 88%;
-    margin: 2% 6% 20% 6%;
+    height: 30%;
+    margin-top: 4%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .calendar-card .title{
     color: #393939;
-    font-size: 26px;
-
-
+    font-size: 24px;
+    font-weight: 500;
 }
 
-.calendar-card svg{
+.calendar-card .edit{
+    width: 10%
+}
+
+.calendar-card .edit:hover{
+    cursor: pointer;
+}
+
+.calendar-card .boxTrigger{
+    position: absolute;
+    width: 10%;
+    height: 35%;
+    left: -20%;
+    top: 5%;
+    padding: 0 10px;
+}
+
+.calendar-card .checkbox{
+
+    width: 100%;
+    
+;
+    
+}
+.calendar-card .checked{
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 100%;
+    display: none;
+}
+
+
+
+.calendar-card .checked.active{
+    display: block;
 }
 
 

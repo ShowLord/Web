@@ -2,16 +2,26 @@ import React, { useState, useEffect } from 'react';
 import Calendar from './Calendar';
 import SideBar from './SideBar';
 import CalendarForm from './CalendarForm/CalendarForm';
+import PlanForm from './PlanForm/PlanForm';
 
 function App() {
-  const [show, setShow] = useState(false);
+  const [addCalendar, setAddCalendar] = useState(false);
+  const [addPlan, setAddPlan] = useState(false);
   const [list, setList] = useState([]);
 
   const formStatus = (status) => {
     if (status) {
-      setShow(true);
+      setAddCalendar(true);
     } else {
-      setShow(false);
+      setAddCalendar(false);
+    }
+  };
+
+  const planStatus = (status) => {
+    if (status) {
+      setAddPlan(true);
+    } else {
+      setAddPlan(false);
     }
   };
 
@@ -24,8 +34,9 @@ function App() {
   return (
     <div className="app container">
       <SideBar formStatus={formStatus} infoList={list} />
-      <Calendar />
-      {show && <CalendarForm formStatus={formStatus} getCalendarInfo={getCalendarInfo} />}
+      <Calendar planStatus={planStatus} />
+      {addCalendar && <CalendarForm formStatus={formStatus} getCalendarInfo={getCalendarInfo} />}
+      {addPlan && <PlanForm planStatus={planStatus} />}
     </div>
   );
 }

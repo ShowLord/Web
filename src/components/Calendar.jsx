@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DaysTable from './DaysTable';
 // import Plan from './Plan/Plan';
 
-export default function Calendar() {
+export default function Calendar(props) {
+  const { planStatus } = props;
   const [days, setDays] = useState([]);
   const [dt, setDt] = useState(new Date());
 
@@ -21,6 +22,9 @@ export default function Calendar() {
   const firstWeekDay = new Date(year, mon, 1).getDay(); // 2
   const monYear = `${dt.toDateString().split(' ')[1]} ${dt.toDateString().split(' ')[3]}`;
 
+  const navMon = (dt.getMonth() + 1).toString();
+  const navYear = dt.getFullYear().toString();
+
   const getPrev = () => {
     const month = new Date(year, dt.getMonth() - 1);
     setDt(month);
@@ -29,6 +33,10 @@ export default function Calendar() {
   const getNext = () => {
     const month = new Date(year, dt.getMonth() + 1);
     setDt(month);
+  };
+
+  const addPlan = () => {
+    planStatus(true);
   };
 
   useEffect(() => {
@@ -61,18 +69,18 @@ export default function Calendar() {
       <div className="Nav">
         <img src={require('img/notification.png')} alt="logo" className="notification" />
         <img src={require('img/Prev.png')} alt="logo" onClick={getPrev} />
-        <div>{monYear}</div>
+        <div>{navYear} 年 {navMon} 月</div>
         <img src={require('img/Next.png')} alt="logo" onClick={getNext} />
-        <button> Add Plan ＋ </button>
+        <button onClick={addPlan}> 新增計畫 ＋ </button>
       </div>
       <div className="weekdays">
-        <div>S</div>
-        <div>M</div>
-        <div>T</div>
-        <div>W</div>
-        <div>T</div>
-        <div>F</div>
-        <div>S</div>
+        <div>日</div>
+        <div>一</div>
+        <div>二</div>
+        <div>三</div>
+        <div>四</div>
+        <div>五</div>
+        <div>六</div>
       </div>
 
       <div className="table">
