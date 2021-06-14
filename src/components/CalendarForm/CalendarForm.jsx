@@ -2,9 +2,9 @@ import React, { useState, useCallback, useRef } from 'react';
 import ColorPicker from '../FormComponents/ColorPicker';
 
 export default function CalendarForm(props) {
-  const { formStatus, getCalendarInfo } = props;
+  const { calendarWindow, getCalendarInfo } = props;
   const closeItem = (e) => {
-    if (e.target === e.currentTarget) { formStatus(false); }
+    if (e.target === e.currentTarget) { calendarWindow(false); }
   };
   const titleRef = useRef();
 
@@ -23,7 +23,7 @@ export default function CalendarForm(props) {
     if (calendarInfo.title && calendarInfo.color) {
       const infoArray = [];
       infoArray.push(calendarInfo);
-      formStatus(false);
+      calendarWindow(false);
       console.log(infoArray);
       getCalendarInfo(infoArray);
     }

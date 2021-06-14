@@ -3,14 +3,9 @@ import DaysTable from './DaysTable';
 
 export default function Calendar(props) {
   const {
-    month, year, date, planWindow,
+    month, year, date, planWindow, planData, getPlanDate, getDayString, currentDayId,
   } = props;
   const [daysInTable, setDaysInTable] = useState([]);
-
-  const currentYear = new Date().getFullYear();
-  const currentMon = new Date().getMonth();
-  const currentDate = new Date().getDate();
-  const currentDayId = Date.parse(new Date(currentYear, currentMon, currentDate));
 
   const daysCount = new Date(year, month + 1, 0).getDate(); // 30
   const daysCountPreMon = new Date(year, month, 0).getDate(); // 31
@@ -19,23 +14,24 @@ export default function Calendar(props) {
   useEffect(() => {
     const array = [];
     for (let i = daysCountPreMon - firstWeekDay + 1; i <= daysCountPreMon; i += 1) {
-      const dayId = Date.parse(new Date(year, month - 1, i));
+      const dayId = getDayString(year, month, i);
       const obj = { id: dayId, day: i };
       array.push(obj);
     }
 
     for (let i = 1; i <= daysCount; i += 1) {
-      const dayId = Date.parse(new Date(year, month, i));
+      const dayId = getDayString(year, month + 1, i);
       const obj = { id: dayId, day: i };
       array.push(obj);
     }
 
     for (let i = 1; i <= 42 - (daysCount + firstWeekDay); i += 1) {
-      const dayId = Date.parse(new Date(year, month + 1, i));
+      const dayId = getDayString(year, month + 2, i);
       const obj = { id: dayId, day: i };
       array.push(obj);
     }
     setDaysInTable(array);
+    console.log(array);
   }, [date]);
 
   return (
@@ -62,6 +58,8 @@ export default function Calendar(props) {
                 paddingCountNext={firstWeekDay + daysCount}
                 currentDay={currentDayId}
                 planWindow={planWindow}
+                planData={planData}
+                getPlanDate={getPlanDate}
               />
             ))
           }

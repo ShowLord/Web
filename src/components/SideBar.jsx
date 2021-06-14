@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import CalendarList from './CalenarList/CalendarList';
 
 export default function SideBar(props) {
-  const { formStatus, infoList } = props;
+  const { calendarWindow, infoList } = props;
 
   const atAddCalendar = () => {
-    formStatus(true);
+    calendarWindow(true);
   };
 
   console.log(infoList);

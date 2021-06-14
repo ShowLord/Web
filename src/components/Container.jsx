@@ -3,12 +3,13 @@ import Main from './Main';
 import SideBar from './SideBar';
 import CalendarForm from './CalendarForm/CalendarForm';
 import PlanForm from './PlanForm/PlanForm';
-import DaysTable from './Calendar/DaysTable';
 
 export default function Container() {
   const [addCalendar, setAddCalendar] = useState(false);
   const [addPlan, setAddPlan] = useState(false);
-  const [list, setList] = useState([]);
+  const [calendarList, setCalendarList] = useState([]);
+  const [planList, setPlanList] = useState([]);
+  const [planDate, setPlanDate] = useState();
 
   const calendarWindow = (status) => {
     if (status) {
@@ -27,17 +28,26 @@ export default function Container() {
   };
 
   const getCalendarInfo = (ele) => {
-    setList(list.concat(ele));
+    setCalendarList(calendarList.concat(ele));
   };
 
-  console.log(list);
+  const getPlanInfo = (ele) => {
+    setPlanList(planList.concat(ele));
+  };
+
+  const getPlanDate = (time) => {
+    setPlanDate(time);
+  };
+
+  console.log(calendarList);
+  console.log(planDate);
 
   return (
     <div className="container">
-      <SideBar calendarWindow={calendarWindow} infoList={list} />
-      <Main planWindow={planWindow} />
+      <SideBar calendarWindow={calendarWindow} infoList={calendarList} />
+      <Main planWindow={planWindow} planData={planList} getPlanDate={getPlanDate} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
-      {addPlan && <PlanForm planWindow={planWindow} />}
+      {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} />}
     </div>
   );
 }
