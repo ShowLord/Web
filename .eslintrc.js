@@ -28,5 +28,6 @@ module.exports = {
     'react/no-access-state-in-setstate': 0,
     'react/prop-types': 0,
     'react/state-in-constructor': 0,
+    'max-len': 'off',
   },
 };

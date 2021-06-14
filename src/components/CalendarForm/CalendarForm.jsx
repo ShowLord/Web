@@ -12,14 +12,12 @@ export default function CalendarForm(props) {
   const pickColor = (e) => {
     const color = getComputedStyle(e.target).backgroundColor;
     calendarInfo.color = color;
-    console.log(calendarInfo);
   };
 
   const atSubmit = () => {
     const title = titleRef.current.value;
     if (title !== '') {
       calendarInfo.title = title;
-      console.log(calendarInfo);
     }
 
     if (calendarInfo.title && calendarInfo.color) {

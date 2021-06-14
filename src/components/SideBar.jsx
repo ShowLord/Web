@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CalendarList from './CalendarList';
+import CalendarList from './CalenarList/CalendarList';
 
 export default function SideBar(props) {
   const { formStatus, infoList } = props;
@@ -11,9 +11,9 @@ export default function SideBar(props) {
   console.log(infoList);
 
   return (
-    <div className="sideBar">
+    <div className="side-bar">
       <img className="logo" src={require('img/Logo.png')} alt="logo" />
-      <button onClick={atAddCalendar}> 新增日曆 ＋ </button>
+      <button className="add-calendar pointer" onClick={atAddCalendar}> 新增日曆 ＋ </button>
       <div className="calendar-list">
         {
         infoList.map((ele) => (
@@ -25,13 +25,15 @@ export default function SideBar(props) {
         ))
         }
       </div>
-      <div className="user">
-        <img src={require('img/avatar.png')} alt="logo" />
-        <div>
-          <span>Show Lo</span>
-          <span>iiiishowlo@gmail.com</span>
+      <div className="user-card">
+        <div className="user">
+          <img className="avatar" src={require('img/avatar.png')} alt="avatar" />
+          <div className="info">
+            <span>Show Lo Lo</span>
+            <span>iiiishowlo@gmail.com</span>
+          </div>
         </div>
-        <img src={require('img/user.png')} alt="logo" />
+        <img className="setting pointer" src={require('img/user.png')} alt="logo" />
       </div>
     </div>
   );

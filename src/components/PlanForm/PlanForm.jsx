@@ -1,11 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ColorPicker from '../FormComponents/ColorPicker';
 
 export default function Plan(props) {
-  const { planStatus } = props;
+  const { planWindow } = props;
+  const titleRef = useRef();
 
   const closeItem = (e) => {
-    if (e.target === e.currentTarget) { planStatus(false); }
+    if (e.target === e.currentTarget) { planWindow(false); }
+  };
+
+  const planInfo = { };
+  const pickColor = (e) => {
+    const color = getComputedStyle(e.target).backgroundColor;
+    planInfo.color = color;
+  };
+
+  const atSubmit = () => {
+    const title = titleRef.current.value;
+    if (title !== '') {
+      planInfo.title = title;
+    }
+
+    if (planInfo.title && planInfo.color) {
+      const infoArray = [];
+      infoArray.push(planInfo);
+      planWindow(false);
+      console.log(infoArray);
+      // getPlanInfo(infoArray);
+    }
   };
 
   return (
@@ -15,9 +37,9 @@ export default function Plan(props) {
           <img className="close" src={require('img/close.png')} alt="close" onClick={closeItem} />
           <div className="form">
             <div className="section"> 新增計畫</div>
-            <ColorPicker />
+            <ColorPicker pickColor={pickColor} />
             <label htmlFor="plan-title">標題
-              <input type="input" name="title" id="plan-title" />
+              <input type="input" name="title" id="plan-title" ref={titleRef} />
             </label>
             <label htmlFor="plan-time">時間
               <input type="input" name="title" id="plan-time" />
@@ -28,7 +50,7 @@ export default function Plan(props) {
             <label htmlFor="plan-addTo">新增計畫至以下日曆
               <input type="input" name="title" id="plan-addTo" />
             </label>
-            <button className="submit"> 新增計畫 ＋ </button>
+            <button className="submit" onClick={atSubmit}> 新增計畫 ＋ </button>
           </div>
         </div>
       </div>
