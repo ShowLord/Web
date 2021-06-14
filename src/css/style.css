@@ -306,8 +306,24 @@ input::placeholder{
 
 }
 
+.upload-img{
+    background: rgba(205, 205, 208, 0.2);
+    color: #393939;
+    font-size: 16px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30%;
+    height: 40px;
+    margin-top: 5%;
+    padding: 0 4%;
+}
 
-
+input[type="file"]{
+    display: none;
+}
 
 /* Calendar-form */
 
@@ -328,6 +344,8 @@ input::placeholder{
     margin: auto 15%;
     /* background-color: tomato; */
     width: 100%;
+    height: 100%;
+    overflow: scroll;
 }
 
 
@@ -338,6 +356,18 @@ input::placeholder{
     font-size: 45px;
 
 }
+
+.album{
+    margin-top: 10%;
+    height: 10%;
+}
+.album img{
+    
+    width: 40%;
+    border-radius: 10px;
+}
+
+
 
 
 /* Plan-form  */
