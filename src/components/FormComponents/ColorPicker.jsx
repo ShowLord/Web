@@ -11,12 +11,12 @@ export default function ColorPicker(props) {
   };
 
   return (
-    <div className="color-picker">
-      <button aria-label="color" className={classnames('red', { chosen: chosenColor === 'red' })} onClick={atPickColor} />
-      <button aria-label="color" className={classnames('yellow', { chosen: chosenColor === 'yellow' })} onClick={atPickColor} />
-      <button aria-label="color" className={classnames('green', { chosen: chosenColor === 'green' })} onClick={atPickColor} />
-      <button aria-label="color" className={classnames('blue', { chosen: chosenColor === 'blue' })} onClick={atPickColor} />
-      <button aria-label="color" className={classnames('purple', { chosen: chosenColor === 'purple' })} onClick={atPickColor} />
+    <div className="color-picker ">
+      <button aria-label="color" className={classnames('red', 'pointer', { chosen: chosenColor === 'red' })} onClick={atPickColor} />
+      <button aria-label="color" className={classnames('yellow', 'pointer', { chosen: chosenColor === 'yellow' })} onClick={atPickColor} />
+      <button aria-label="color" className={classnames('green', 'pointer', { chosen: chosenColor === 'green' })} onClick={atPickColor} />
+      <button aria-label="color" className={classnames('blue', 'pointer', { chosen: chosenColor === 'blue' })} onClick={atPickColor} />
+      <button aria-label="color" className={classnames('purple', 'pointer', { chosen: chosenColor === 'purple' })} onClick={atPickColor} />
     </div>
   );
 }
