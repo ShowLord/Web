@@ -235,22 +235,31 @@ button{
     justify-content: center;
 }
 
-/* .form{
-    display: flex;
-    flex-direction: column;
-    align-items:flex-start;
-    margin: auto 15%;
-    background-color: tomato;
-    
-    overflow: scroll;
-} */
-
 .plan-window .form{
     position: relative;
     width: 60%;
     display: flex;
     flex-direction: column;
     margin: 20% auto;
+}
+
+.calendar-window{
+    height: 100vh;
+    width: 25%;
+    background-color: #FCFCFC;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.calendar-window .form{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40%;
+    
 }
 
     .section{
@@ -273,6 +282,7 @@ button{
     }
 
     .color-picker button:hover{
+        cursor: pointer;
         border: #BBAF8C 2px solid ;
     }
 
@@ -295,20 +305,6 @@ button{
         font-weight: 300;
         width: 90%;
     }
-
-    /* input{
-        background: rgba(205, 205, 208, 0.2);
-        border: none;
-        border-radius: 20px;
-        outline: none;
-        margin-top: 3%;
-        padding:2% 5% 2% 5% ;
-        caret-color: #B3B3B3;
-        font-size: 15px;
-        color: #393939;
-        width: 90%;
-        height: 20px;
-    } */
 
     .scroll-content{
         overflow: scroll;
@@ -345,7 +341,7 @@ button{
         color:  #C7C7C7;
     }
 
-    .submit{
+    .plan-window .submit{
         position: absolute;
         bottom: -5%;
         background-color: #4C5760;
@@ -354,7 +350,16 @@ button{
         width: 90%;
         height: 40px;
         font-size: 18px;
-   
+    }
+
+    .calendar-window .submit{
+        background-color: #4C5760;
+        color: #FFFFFF;
+        border-radius: 20px;
+        width: 90%;
+        height: 40px;
+        font-size: 18px;
+        margin-top: 40%;
     }
 
     .close{
@@ -406,28 +411,6 @@ button{
     .album img{
     height: 120%;
     }
-
-    
-
-    
-/* Calendar-form */
-
-.calendar-form .calendar-window{
-    height: 100vh;
-    width: 25%;
-    background-color: #FCFCFC;
-    position: absolute;
-    right: 0;
-    top: 0;
-    display: flex;
-}
-
-
-
-
-
-
-
 
 
 
