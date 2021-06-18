@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import DailyPlan from './DailyPlan';
+import { currentDayId } from './DateString';
 
 export default function DaysTable(props) {
   const {
-    day, paddingCountPrev, paddingCountNext, index, dayId, currentDay, planWindow, planData, getPlanDate,
+    day, paddingCountPrev, paddingCountNext, index, dayId, planWindow, planData, getPlanDate,
   } = props;
 
   const addPlan = (e) => {
@@ -17,7 +18,7 @@ export default function DaysTable(props) {
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
-      className={classnames('cell', { paddingDay: index < paddingCountPrev || index >= paddingCountNext }, { today: dayId === currentDay })}
+      className={classnames('cell', { paddingDay: index < paddingCountPrev || index >= paddingCountNext }, { today: dayId === currentDayId })}
       onClick={addPlan}
       id={dayId}
     >{day}
@@ -31,7 +32,6 @@ export default function DaysTable(props) {
             />
           ))
         }
-
       </div>
     </div>
   );

@@ -28,48 +28,28 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
-.navbar{
-    text-align: center;
-    font-size: 35px;
-    margin: 4% 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 90%;
-}
 
-    .navbar .date{
-        width: 20%;
-        height: 35px;
-        line-height: 30px;
-        font-weight: 700;
-        color: #393939;      
+    .main .notification{
+        width: 2.5%;
+        position: absolute;
+        left: 7%;
+        top: 7%;
+        
     }
 
-    .navbar .mon-switch{
-        margin: 0 30px;
-        width: 1.5%;
-    }
-
-
-    .navbar .notification{
-        width: 3%;
-        margin-left: 0;
-        margin-right: 25%;
-    }
-
-    .navbar .add-plan{
+    .main .add-plan{
         font-size: 16px;
         color: #ffffff;
         background-color: #4C5760;
         border-radius: 20px;
         width: 18%;
         height: 40px;
-        margin-left: 9% ;
-        outline: none;
-        border: none;
+        position: absolute;
+        right: 12%;
+        top: 6.5%;
     }
 
 
@@ -77,6 +57,27 @@ button{
     margin: 0 5%;
     width: 90%;
 }
+
+    .calendar .month-picker{
+        display: flex;
+        justify-content: center;
+        margin: 4.5% 8% 4% 0;
+    }
+
+    .calendar .month-picker .date{       
+        width: 20%;
+        height: 35px;
+        line-height: 30px;
+        text-align: center;
+        font-weight: 700;
+        color: #393939;  
+        font-size: 35px;    
+    }
+
+    .calendar .month-picker .mon-switch{
+        margin: 0 30px;
+        width: 1.5%;
+    }
     
     .calendar .weekdays{
         display: flex;
@@ -226,7 +227,7 @@ button{
 
 .plan-window{
     height: 100vh;
-    width: 30%;
+    width: 35%;
     background-color: #FCFCFC;
     position: absolute;
     right: 0;
@@ -237,10 +238,10 @@ button{
 
 .plan-window .form{
     position: relative;
-    width: 60%;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    margin: 20% auto;
+    margin: 15% auto;
 }
 
 .calendar-window{
@@ -272,7 +273,7 @@ button{
         display: flex;
         justify-content: space-between;
         width: 220px;
-        margin: 8% 0 10% 0;
+        margin: 8% 0 5% 0;
     }
     .color-picker button{
         width: 30px;
@@ -366,6 +367,79 @@ button{
         position:absolute;
         right: 8%;
         top: 5%;
+    }
+
+    .date-picker{
+        background-color: #ECECEC;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 20px;
+        width: 60%;
+        margin-top: 3%;
+        padding-bottom: 3%;
+    }
+
+    .date-picker .month-picker{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 5% 0;
+        border-bottom: #D5D7DD 1px solid;
+    }
+
+    .date-picker .month-picker .date{
+        font-size: 16px;
+        width: 50%;
+        color: #4C5760;
+        text-align: center;
+    }
+
+    .date-picker .month-picker .mon-switch{
+        width: 6%;
+    }
+
+    .date-picker .weekdays {
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        width: 95%;     
+        margin: 3%;
+    }
+
+    .date-picker .weekdays div{
+        color: #4C5760;
+        width: 9%;
+        margin: 0 1%;
+        padding: 1%;
+        text-align: center;
+    }
+
+    .date-picker .table{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 95%;
+    }
+
+    .date-picker .day{
+        color: #4C5760;
+        font-size: 13px;
+        text-align: center;
+        width: 9%;
+        margin: 1%;
+        padding: 1%;
+        border-radius: 20px;
+    }
+
+    .date-picker .day:hover{
+        color: #FFFFFF;
+        background-color: #4C5760;
+    }
+
+    .date-picker .day.paddingDay{
+        color: #B9B9B9;
     }
 
     .upload-img{

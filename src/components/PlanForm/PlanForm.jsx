@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ColorPicker from '../FormComponents/ColorPicker';
 import Album from './Album';
+import DatePIcker from './DatePicker';
 
 export default function Plan(props) {
   const { planWindow, getPlanInfo, planDate } = props;
@@ -62,6 +63,7 @@ export default function Plan(props) {
               <label htmlFor="plan-time">時間
                 <input type="input" name="title" id="plan-time" ref={timeRef} defaultValue={planDate} />
               </label>
+              <DatePIcker />
               <label htmlFor="plan-detail">描述
                 <textarea name="detail" id="plan-detail" rows="2" />
               </label>
