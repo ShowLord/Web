@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ColorPicker from '../FormComponents/ColorPicker';
 import Album from './Album';
 import DatePIcker from './DatePicker';
+import CalendarPicker from './CalendarPicker';
 
 export default function Plan(props) {
   const {
@@ -10,6 +11,7 @@ export default function Plan(props) {
   const [imgList, setImgList] = useState([]);
   const [datePicker, setDatePicker] = useState(false);
   const [dateValue, setDateValue] = useState(planDate);
+  const [calendarPicker, setCalendarPicker] = useState(false);
   const titleRef = useRef();
   const timeRef = useRef();
 
@@ -64,16 +66,27 @@ export default function Plan(props) {
     setDateValue(value);
   };
 
-  const closeDatePicker = (e) => {
+  const closePicker = (e) => {
     if (datePicker === true && e.target.className !== 'date-picker') {
       setDatePicker(false);
+    }
+    if (calendarPicker === true && e.target.className !== 'calendar-picker') {
+      setCalendarPicker(false);
+    }
+  };
+
+  const calendarPickerBox = (status) => {
+    if (status) {
+      setCalendarPicker(true);
+    } else {
+      setCalendarPicker(false);
     }
   };
 
   return (
     <div className="plan">
       <div className="mask" onClick={closeItem}>
-        <div className="plan-window" onClick={closeDatePicker}>
+        <div className="plan-window" onClick={closePicker}>
           <img className="close pointer" src={require('img/close.png')} alt="close" onClick={closeItem} />
           <div className="form">
             <div className="section"> 新增計畫</div>
@@ -90,23 +103,22 @@ export default function Plan(props) {
                 <textarea name="detail" id="plan-detail" rows="2" />
               </label>
               <label htmlFor="plan-addTo">新增計畫至以下日曆
-                <input className="pointer " type="button" name="title" id="plan-addTo" />
+                <input className="pointer " type="button" name="title" id="plan-addTo" onClick={calendarPickerBox} />
               </label>
-              {/* <div className="caldendar-picker">
+              {calendarPicker && (
+              <div className="caldendar-picker">
                 {calendarList.map((obj) => (
-
-                  <div
-                    className="chose-calendar pointer"
+                  <CalendarPicker
                     key={Math.random()}
-
-                  >
-                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <ellipse cx="6.58888" cy="6.15805" rx="5.59816" ry="5.57895" fill={obj.color} />
-                    </svg>{obj.title}
-                  </div>
+                    title={obj.title}
+                    color={obj.color}
+                    calendarPickerBox={calendarPickerBox}
+                  />
                 ))}
-              </div> */}
-              <label htmlFor="plan-todo-list">代辦清單
+              </div>
+              )}
+
+              <label htmlFor="plan-todo-list">待辦清單
                 <input type="input" name="title" id="plan-todo-list" />
               </label>
               <label htmlFor="upload-img" className="upload-img pointer">
