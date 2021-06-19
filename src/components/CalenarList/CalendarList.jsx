@@ -14,7 +14,7 @@ export default function CalendarList(props) {
 
   return (
     <div className="calendar-card">
-      <div className="boxTrigger" onClick={onToggle}>
+      <div className="boxTrigger pointer" onClick={onToggle}>
         <svg className="checkbox" width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.67139" y="1" width="31.6" height="31.6" rx="7" fill="white" stroke={color} strokeWidth="2" />
         </svg>

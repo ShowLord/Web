@@ -4,8 +4,12 @@ import Album from './Album';
 import DatePIcker from './DatePicker';
 
 export default function Plan(props) {
-  const { planWindow, getPlanInfo, planDate } = props;
+  const {
+    planWindow, getPlanInfo, planDate, calendarList,
+  } = props;
   const [imgList, setImgList] = useState([]);
+  const [datePicker, setDatePicker] = useState(false);
+  const [dateValue, setDateValue] = useState(planDate);
   const titleRef = useRef();
   const timeRef = useRef();
 
@@ -48,10 +52,28 @@ export default function Plan(props) {
     }
   };
 
+  const datePickerBox = (status) => {
+    if (status) {
+      setDatePicker(true);
+    } else {
+      setDatePicker(false);
+    }
+  };
+
+  const getDateValue = (value) => {
+    setDateValue(value);
+  };
+
+  const closeDatePicker = (e) => {
+    if (datePicker === true && e.target.className !== 'date-picker') {
+      setDatePicker(false);
+    }
+  };
+
   return (
     <div className="plan">
       <div className="mask" onClick={closeItem}>
-        <div className="plan-window">
+        <div className="plan-window" onClick={closeDatePicker}>
           <img className="close pointer" src={require('img/close.png')} alt="close" onClick={closeItem} />
           <div className="form">
             <div className="section"> 新增計畫</div>
@@ -61,15 +83,29 @@ export default function Plan(props) {
                 <input type="text" name="title" id="plan-title" ref={titleRef} />
               </label>
               <label htmlFor="plan-time">時間
-                <input type="input" name="title" id="plan-time" ref={timeRef} defaultValue={planDate} />
+                <input className="pointer dateButton" type="button" name="title" id="plan-time" ref={timeRef} defaultValue={dateValue} onClick={datePickerBox} />
               </label>
-              <DatePIcker />
+              {datePicker && <DatePIcker getDateValue={getDateValue} datePickerBox={datePickerBox} />}
               <label htmlFor="plan-detail">描述
                 <textarea name="detail" id="plan-detail" rows="2" />
               </label>
               <label htmlFor="plan-addTo">新增計畫至以下日曆
-                <input type="input" name="title" id="plan-addTo" />
+                <input className="pointer " type="button" name="title" id="plan-addTo" />
               </label>
+              {/* <div className="caldendar-picker">
+                {calendarList.map((obj) => (
+
+                  <div
+                    className="chose-calendar pointer"
+                    key={Math.random()}
+
+                  >
+                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="6.58888" cy="6.15805" rx="5.59816" ry="5.57895" fill={obj.color} />
+                    </svg>{obj.title}
+                  </div>
+                ))}
+              </div> */}
               <label htmlFor="plan-todo-list">代辦清單
                 <input type="input" name="title" id="plan-todo-list" />
               </label>

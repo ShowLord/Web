@@ -47,7 +47,7 @@ export default function Container() {
       <SideBar calendarWindow={calendarWindow} infoList={calendarList} />
       <Main planWindow={planWindow} planData={planList} getPlanDate={getPlanDate} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
-      {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} />}
+      {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} />}
     </div>
   );
 }

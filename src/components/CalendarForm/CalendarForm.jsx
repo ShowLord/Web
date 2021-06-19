@@ -33,7 +33,7 @@ export default function CalendarForm(props) {
     <div className="calendar-form">
       <div className="mask" onClick={closeItem}>
         <div className="calendar-window">
-          <img className="close" src={require('img/close.png')} alt="close" onClick={closeItem} />
+          <img className="close pointer" src={require('img/close.png')} alt="close" onClick={closeItem} />
           <div className="form">
             <div className="section"> 新增日曆</div>
             <ColorPicker pickColor={pickColor} />
@@ -43,7 +43,7 @@ export default function CalendarForm(props) {
             <label htmlFor="collaborator" className="collaborator">新增協作者
               <input type="input" name="collaborator" id="collaborator" placeholder="輸入協作者姓名或信箱" />
             </label>
-            <button className="submit" onClick={atSubmit}> 新增日曆 ＋ </button>
+            <button className="submit pointer" onClick={atSubmit}> 新增日曆 ＋ </button>
           </div>
         </div>
       </div>
