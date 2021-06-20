@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
 export default function CalendarPicler(props) {
   const { title, color, calendarPickerBox } = props;
@@ -8,6 +8,7 @@ export default function CalendarPicler(props) {
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       className="chose-calendar pointer"
       key={Math.random()}

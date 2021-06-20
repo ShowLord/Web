@@ -296,6 +296,12 @@ button{
     .color-picker .green{background-color:#BBD780;}
     .color-picker .blue{background-color:#7A8EF8;}
     .color-picker .purple{background-color:#C0B4EA;}
+    
+    .scroll-content{
+        overflow: scroll;
+        margin-bottom: 10%;
+        position: relative;
+    }
 
     label{
         display: flex;
@@ -304,12 +310,7 @@ button{
         color: #B3B3B3;
         margin-top: 3%;
         font-weight: 300;
-        width: 90%;
-    }
-
-    .scroll-content{
-        overflow: scroll;
-        margin-bottom: 10%;
+        width: 100%;
     }
 
     .form input{
@@ -320,9 +321,14 @@ button{
         caret-color: #B3B3B3;
         font-size: 16px;
         color: #393939;
+        width: 60%;  
         margin-top: 3%;
-        padding:3% 5% 3% 5% ;
-        
+        padding:3% 5% 3% 5%  ;
+    }
+
+    .form input[type ="button"]{
+        width: 70%; 
+        padding: 3%;      
     }
 
     .form textarea{
@@ -336,6 +342,7 @@ button{
         margin-top: 3%;
         padding:3% 5% 3% 5% ;
         resize: none;
+        width: 60%;
     }
 
     input::placeholder{
@@ -370,12 +377,18 @@ button{
     }
 
     .date-picker{
+        border-radius: 20px;
+        width: 60%;
+        position: absolute;
+    }
+
+    .date-picker .calendar-box{
         background-color: #ECECEC;
         display: flex;
         flex-direction: column;
         align-items: center;
         border-radius: 20px;
-        width: 60%;
+        width: 100%;
         margin-top: 3%;
         padding-bottom: 3%;
     }
@@ -435,18 +448,26 @@ button{
 
     .date-picker .day:hover{
         color: #FFFFFF;
-        background-color: #4C5760;
+        background-color: #8F969C;
     }
 
     .date-picker .day.paddingDay{
         color: #B9B9B9;
     }
 
+    .date-picker .planDate{
+        color: #FFFFFF;
+        background-color: #8F969C;
+    }
+    .date-picker .paddingDay{
+        color: #D5D7DD;
+    }
+
     .caldendar-picker{
         background-color: #ECECEC;
         margin-top: 3%;
         padding: 2% 0;
-        width: 90%;
+        width: 70%;
         border-radius: 20px;
         display: flex;
         flex-direction: column;
@@ -468,6 +489,8 @@ button{
     .caldendar-picker .chose-calendar svg{
         margin-right: 2%;
     }
+
+    
 
     .upload-img{
         background: rgba(205, 205, 208, 0.2);
@@ -491,7 +514,7 @@ button{
 
     .album{
         margin: 10% 0;
-        width: 90%;
+        width: 80%;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
