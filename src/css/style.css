@@ -269,6 +269,13 @@ button{
         font-size: 45px;
     }
 
+    .close{
+        position:absolute;
+        width: 10%;
+        right: 8%;
+        top: 3%;
+    }
+
     .color-picker{
         display: flex;
         justify-content: space-between;
@@ -299,7 +306,7 @@ button{
     
     .scroll-content{
         overflow: scroll;
-        margin-bottom: 10%;
+        margin-bottom: 4%;
         position: relative;
     }
 
@@ -323,12 +330,13 @@ button{
         color: #393939;
         width: 60%;  
         margin-top: 3%;
-        padding:3% 5% 3% 5%  ;
+        padding:3% 5%;
     }
 
     .form input[type ="button"]{
         width: 70%; 
-        padding: 3%;      
+        padding: 3% 5%;
+        text-align: start;      
     }
 
     .form textarea{
@@ -370,11 +378,7 @@ button{
         margin-top: 40%;
     }
 
-    .close{
-        position:absolute;
-        right: 8%;
-        top: 5%;
-    }
+    
 
     .date-picker{
         border-radius: 20px;
@@ -520,24 +524,74 @@ button{
         justify-content: flex-start;
     }
 
-    .album .preview {
-        
-        width: 140px;
-        height: 100px;
+    .album .preview {    
+        width: 170px;
+        height: 113px;
         overflow:hidden;
         border-radius: 10px;
         margin: 2%;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
 
     .album img{
-    height: 120%;
+    height: 130%;
     }
 
+    .album .img-hover {
+        background-color:  rgba(76, 87, 96, 0.5);
+        position:absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
 
+    .album .img-hover .del{
+        margin: 4%;
+        width: 15%;
+        fill: #ffffffcc;
+   
+    }
 
+    .album .img-hover svg:hover{
+        fill: #FFFFFF;
+    }
+
+.view-plan .form{
+    margin-bottom: 7%;
+}
+
+.view-plan .title{  
+    display: flex; 
+    align-items: flex-end;
+    margin-bottom: 5%;   
+}
+    .title span{
+        color: #FF8A8C;
+        font-size: 45px;
+        height: 45px;
+        line-height: 45px;
+    }
+    
+    .view-plan .edit{
+        width: 35px;
+        margin-left: 3%;
+    }
+
+    .view-plan .comment button{
+        background: #FF8A8C;
+        color: #FFFFFF;
+        font-size: 16px;
+        width: 15%;
+        padding: 2% 0%;
+        margin: 4% 0 0 55%;
+        border-radius: 15px;
+    }
+    
 
 
 
@@ -596,7 +650,6 @@ button{
 }
 
 .calendar-card .checkbox{
-
     width: 100%;
     
 ;
@@ -605,8 +658,8 @@ button{
 .calendar-card .checked{
     position: absolute;
     top: 0;
-    left: 10%;
-    width: 100%;
+    left: 30%;
+    width: 60%;
     display: none;
 }
 

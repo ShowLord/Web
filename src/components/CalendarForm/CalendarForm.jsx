@@ -30,21 +30,19 @@ export default function CalendarForm(props) {
   };
 
   return (
-    <div className="calendar-form">
-      <div className="mask" onClick={closeItem}>
-        <div className="calendar-window">
-          <img className="close pointer" src={require('img/close.png')} alt="close" onClick={closeItem} />
-          <div className="form">
-            <div className="section"> 新增日曆</div>
-            <ColorPicker pickColor={pickColor} />
-            <label htmlFor="calendar-title" className="title">標題
-              <input type="input" name="title" id="calendar-title" ref={titleRef} />
-            </label>
-            <label htmlFor="collaborator" className="collaborator">新增協作者
-              <input type="input" name="collaborator" id="collaborator" placeholder="輸入協作者姓名或信箱" />
-            </label>
-            <button className="submit pointer" onClick={atSubmit}> 新增日曆 ＋ </button>
-          </div>
+    <div className="mask" onClick={closeItem}>
+      <div className="calendar-window">
+        <img className="close pointer" src={require('img/close.png')} alt="close" onClick={closeItem} />
+        <div className="form">
+          <div className="section"> 新增日曆</div>
+          <ColorPicker pickColor={pickColor} />
+          <label htmlFor="calendar-title" className="title">標題
+            <input type="input" name="title" id="calendar-title" ref={titleRef} />
+          </label>
+          <label htmlFor="collaborator" className="collaborator">新增協作者
+            <input type="input" name="collaborator" id="collaborator" placeholder="輸入協作者姓名或信箱" />
+          </label>
+          <button className="submit pointer" onClick={atSubmit}> 新增日曆 ＋ </button>
         </div>
       </div>
     </div>

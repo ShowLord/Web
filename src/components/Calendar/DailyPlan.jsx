@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 export default function DailyPlan(props) {
-  const { color, title } = props;
+  const { plan, getPlan } = props;
+
+  const atClickPlan = () => {
+    getPlan(plan);
+  };
 
   return (
-    <div className="plan">
+    <div className="plan" onClick={atClickPlan}>
       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="5" cy="5" r="5" fill={color} />
+        <circle cx="5" cy="5" r="5" fill={plan.color} />
       </svg>
-      <span>{title}</span>
+      <span>{plan.title}</span>
 
     </div>
 

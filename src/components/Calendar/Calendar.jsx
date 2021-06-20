@@ -5,7 +5,7 @@ import useDate from './UseDate';
 
 export default function Calendar(props) {
   const {
-    planWindow, planData, getPlanDate,
+    planWindow, planList, getPlanDate, getPlan,
   } = props;
 
   const {
@@ -35,8 +35,9 @@ export default function Calendar(props) {
                 paddingCountPrev={firstWeekDay}
                 paddingCountNext={firstWeekDay + daysCount}
                 planWindow={planWindow}
-                planData={planData}
+                planList={planList}
                 getPlanDate={getPlanDate}
+                getPlan={getPlan}
               />
             ))
           }

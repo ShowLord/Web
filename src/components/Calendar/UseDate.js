@@ -4,11 +4,9 @@ import getDateString from './DateString';
 export default function useDate() {
   const [date, setDate] = useState(new Date());
   const [daysInTable, setDaysInTable] = useState([]);
-  console.log(date);
 
   const month = date.getMonth();
   const year = date.getFullYear();
-  console.log(month);
 
   const daysCount = new Date(year, month + 1, 0).getDate(); // 30
   const daysCountPreMon = new Date(year, month, 0).getDate(); // 31

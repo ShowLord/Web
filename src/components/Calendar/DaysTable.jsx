@@ -5,15 +5,17 @@ import { currentDayId } from './DateString';
 
 export default function DaysTable(props) {
   const {
-    day, paddingCountPrev, paddingCountNext, index, dayId, planWindow, planData, getPlanDate,
+    day, paddingCountPrev, paddingCountNext, index, dayId, planWindow, planList, getPlanDate, getPlan,
   } = props;
 
   const addPlan = (e) => {
-    planWindow(true);
-    getPlanDate(e.target.id);
+    if (e.target === e.currentTarget) {
+      planWindow(true);
+      getPlanDate(e.target.id);
+    }
   };
 
-  const planList = planData.filter((obj) => obj.time === dayId);
+  const dailyPlanList = planList.filter((obj) => obj.date === dayId);
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -24,11 +26,11 @@ export default function DaysTable(props) {
     >{day}
       <div className="daily-plan">
         {
-          planList.map((obj) => (
+          dailyPlanList.map((obj) => (
             <DailyPlan
               key={obj.time + obj.color}
-              color={obj.color}
-              title={obj.title}
+              plan={obj}
+              getPlan={getPlan}
             />
           ))
         }

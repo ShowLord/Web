@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Album from './Album';
 
-export default function UploadImg() {
+export default function UploadImg(props) {
+  const { getImgList } = props;
   const [imgList, setImgList] = useState([]);
-
   const handleFiles = (e) => {
     for (let i = 0; i < e.target.files.length; i += 1) {
       const img = e.target.files[i];
@@ -14,6 +15,8 @@ export default function UploadImg() {
     }
   };
 
+  useEffect(() => { getImgList(imgList); }, [imgList]);
+
   return (
     <div>
       <label htmlFor="upload-img" className="upload-img pointer">
@@ -23,11 +26,12 @@ export default function UploadImg() {
         上傳圖片
         <input type="file" accept="image/*" id="upload-img" multiple onChange={handleFiles} />
       </label>
-      <div className="album black">
+      <div className="album">
         {imgList.map((ele) => (
-          <div className="preview pointer img-cover">
-            <img src={ele} alt="img" key={Math.random()} />
-          </div>
+          <Album
+            src={ele}
+            key={Math.random()}
+          />
         ))}
       </div>
     </div>
