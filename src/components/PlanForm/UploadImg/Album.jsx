@@ -10,7 +10,6 @@ export default function UploadImg(props) {
         src={src}
         alt="img"
         onMouseEnter={() => setIsHovered(true)}
-
       />
       {isHovered && (
         <div className="img-hover pointer" onMouseLeave={() => setIsHovered(false)}>

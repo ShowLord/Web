@@ -3,6 +3,7 @@ import ColorPicker from '../FormComponents/ColorPicker';
 import UploadImg from './UploadImg/UploadImg';
 import DatePicker from './DatePicker';
 import CalendarPicker from './CalendarPicker';
+import { timeNow } from '../Calendar/DateString';
 
 export default function Plan(props) {
   const {
@@ -10,14 +11,23 @@ export default function Plan(props) {
   } = props;
 
   const [datePicker, setDatePicker] = useState(false);
+  const [timePicker, setTimePicker] = useState(false);
   const [dateValue, setDateValue] = useState(planDate);
+  const [timeValue, setTimeValue] = useState('');
   const [calendarPicker, setCalendarPicker] = useState(false);
   const [img, setImg] = useState([]);
   const [color, setColor] = useState();
   const titleRef = useRef();
   const descriptionRef = useRef();
+  const dateDefault = `${dateValue} ${timeValue}`;
 
-  console.log('render!!!!');
+  const timeSwitch = () => {
+    if (timeValue === '') {
+      setTimeValue(timeNow);
+    } else {
+      setTimeValue('');
+    }
+  };
 
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { planWindow(false); }
@@ -98,7 +108,11 @@ export default function Plan(props) {
               <input type="text" name="title" id="plan-title" ref={titleRef} />
             </label>
             <label htmlFor="plan-time">時間
-              <input className="pointer dateButton" type="button" name="title" defaultValue={dateValue} onClick={datePickerBox} />
+              <input className="pointer dateButton" type="button" name="title" defaultValue={dateDefault} onClick={datePickerBox} />
+              <svg className="time-switch pointer" onClick={timeSwitch} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M15 25.5C20.799 25.5 25.5 20.799 25.5 15C25.5 9.20101 20.799 4.5 15 4.5C9.20101 4.5 4.5 9.20101 4.5 15C4.5 20.799 9.20101 25.5 15 25.5ZM23 15C23 19.4183 19.4183 23 15 23C10.5817 23 7 19.4183 7 15C7 10.5817 10.5817 7 15 7C19.4183 7 23 10.5817 23 15ZM16 11C16 10.4477 15.5523 10 15 10C14.4477 10 14 10.4477 14 11V15C14 15.5523 14.4477 16 15 16H19C19.5523 16 20 15.5523 20 15C20 14.4477 19.5523 14 19 14H16V11Z" fill="#4C5760" fillOpacity="0.95" />
+              </svg>
+
             </label>
             {datePicker
               && (

@@ -26,6 +26,7 @@ export default function UploadImg(props) {
         上傳圖片
         <input type="file" accept="image/*" id="upload-img" multiple onChange={handleFiles} />
       </label>
+      {imgList.length >= 1 && (
       <div className="album">
         {imgList.map((ele) => (
           <Album
@@ -34,6 +35,7 @@ export default function UploadImg(props) {
           />
         ))}
       </div>
+      )}
     </div>
   );
 }
