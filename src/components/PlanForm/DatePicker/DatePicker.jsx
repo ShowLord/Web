@@ -1,19 +1,22 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect, useRef } from 'react';
 import classnames from 'classnames';
-import MonthPicker from '../Calendar/MonthPicker';
-import useDate from '../Calendar/UseDate';
+import MonthPicker from '../../Calendar/MonthPicker';
+import useDate from '../../Calendar/UseDate';
 
 export default function DatePicker(props) {
-  const { datePickerBox, getDateValue, dateValue } = props;
+  const {
+    datePickerBox, getDateValue, dateValue, timePicker,
+  } = props;
   const {
     daysInTable, switchMonth, firstWeekDay, daysCount, month, year,
   } = useDate();
 
   const choseDate = (e) => {
-    datePickerBox(false);
+    if (!timePicker) {
+      datePickerBox(false);
+    }
     getDateValue(e.target.id);
-    console.log(e.target.id);
   };
 
   return (

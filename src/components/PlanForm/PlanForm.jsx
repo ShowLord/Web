@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ColorPicker from '../FormComponents/ColorPicker';
 import UploadImg from './UploadImg/UploadImg';
-import DatePicker from './DatePicker';
+import DatePicker from './DatePicker/DatePicker';
+import TimePicker from './DatePicker/TimePicker';
 import CalendarPicker from './CalendarPicker';
 import { timeNow } from '../Calendar/DateString';
 
@@ -24,8 +25,10 @@ export default function Plan(props) {
   const timeSwitch = () => {
     if (timeValue === '') {
       setTimeValue(timeNow);
+      setTimePicker(true);
     } else {
       setTimeValue('');
+      setTimePicker(false);
     }
   };
 
@@ -76,11 +79,13 @@ export default function Plan(props) {
   };
 
   const datePickerRef = useRef();
+  const timePickerRef = useRef();
 
   const closePicker = (e) => {
-    if (datePicker === true && !datePickerRef.current.contains(e.target)) {
+    if (datePicker === true && !datePickerRef.current.contains(e.target) && !timePickerRef.current.contains(e.target)) {
       setDatePicker(false);
     }
+
     if (calendarPicker === true) {
       setCalendarPicker(false);
     }
@@ -109,15 +114,15 @@ export default function Plan(props) {
             </label>
             <label htmlFor="plan-time">時間
               <input className="pointer dateButton" type="button" name="title" defaultValue={dateDefault} onClick={datePickerBox} />
-              <svg className="time-switch pointer" onClick={timeSwitch} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="time-switch pointer" onClick={timeSwitch} ref={timePickerRef} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M15 25.5C20.799 25.5 25.5 20.799 25.5 15C25.5 9.20101 20.799 4.5 15 4.5C9.20101 4.5 4.5 9.20101 4.5 15C4.5 20.799 9.20101 25.5 15 25.5ZM23 15C23 19.4183 19.4183 23 15 23C10.5817 23 7 19.4183 7 15C7 10.5817 10.5817 7 15 7C19.4183 7 23 10.5817 23 15ZM16 11C16 10.4477 15.5523 10 15 10C14.4477 10 14 10.4477 14 11V15C14 15.5523 14.4477 16 15 16H19C19.5523 16 20 15.5523 20 15C20 14.4477 19.5523 14 19 14H16V11Z" fill="#4C5760" fillOpacity="0.95" />
               </svg>
-
             </label>
             {datePicker
               && (
               <div className="date-picker" ref={datePickerRef}>
-                <DatePicker getDateValue={getDateValue} datePickerBox={datePickerBox} dateValue={dateValue} />
+                <DatePicker getDateValue={getDateValue} datePickerBox={datePickerBox} dateValue={dateValue} timePicker={timePicker} />
+                {timePicker && <TimePicker />}
               </div>
               )}
             <label htmlFor="plan-detail">描述

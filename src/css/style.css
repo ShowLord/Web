@@ -394,10 +394,13 @@ button{
 
     
 
-    .date-picker{
+.date-picker{
         border-radius: 20px;
-        width: 90%;
+        width: 80%;
+        height: 30vh;
+        margin-top: 3%;
         position: absolute;
+        display: flex;
     }
 
     .date-picker .calendar-box{
@@ -406,9 +409,7 @@ button{
         flex-direction: column;
         align-items: center;
         border-radius: 20px;
-        width: 70%;
-        margin-top: 3%;
-        padding-bottom: 3%;
+        width: 70%; 
     }
 
     .date-picker .month-picker{
@@ -432,7 +433,6 @@ button{
     }
 
     .date-picker .weekdays {
-        font-size: 15px;
         display: flex;
         justify-content: center;
         width: 95%;     
@@ -441,6 +441,7 @@ button{
 
     .date-picker .weekdays div{
         color: #4C5760;
+        font-size: 15px;
         width: 9%;
         margin: 0 1%;
         padding: 1%;
@@ -481,16 +482,63 @@ button{
         color: #D5D7DD;
     }
 
-    .caldendar-picker{
+    .date-picker .time-box{
         background-color: #ECECEC;
-        margin-top: 3%;
-        padding: 2% 0;
-        width: 70%;
         border-radius: 20px;
+        width: 25%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 1%;
+        margin-left: 5%;
     }
+
+    .date-picker .time-box .moment{
+        display: flex;
+        justify-content: space-around;
+        width: 70%;
+        padding: 15% 0 10% 0;
+        color: #4C5760;
+        font-size: 15px;
+    }
+
+    .date-picker .time-box .time-table{
+        display: flex;
+        justify-content: space-around;
+        width: 70%;
+        overflow: hidden;
+        padding-bottom: 2%;
+
+    }
+
+    .date-picker .time-box .time-table .table{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow: scroll;
+    }
+
+    .date-picker .time-box .time-table .cell{
+        color: #4C5760;
+        font-size: 13px;
+        text-align: center;
+        margin: 10%;
+        padding: 1%;
+        border-radius: 20px;
+    }
+
+
+.caldendar-picker{
+    background-color: #ECECEC;
+    margin-top: 3%;
+    padding: 2% 0;
+    width: 70%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
     .caldendar-picker .chose-calendar{
         width: 90%;
