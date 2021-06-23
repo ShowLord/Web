@@ -517,9 +517,10 @@ button{
         flex-direction: column;
         justify-content: flex-start;
         overflow: scroll;
+        /* background-color: tomato; */
     }
 
-    .date-picker .time-box .time-table .cell{
+    .date-picker .time-box .cell{
         color: #4C5760;
         font-size: 13px;
         text-align: center;
@@ -527,6 +528,18 @@ button{
         padding: 1%;
         border-radius: 20px;
     }
+
+    .date-picker .time-box .planTime{
+        color: #FFFFFF;
+        background-color: #8F969C;
+    }
+
+    .date-picker .time-box .cell:hover{
+        color: #FFFFFF;
+        background-color: #8F969C;
+    }
+
+    
 
 
 .caldendar-picker{

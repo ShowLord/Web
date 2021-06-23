@@ -1,11 +1,17 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 
 export default function TimePicker(props) {
-  const hour = [];
+  const { timeValue, getTime } = props;
+  const [hour, setHour] = useState(timeValue.split(':')[0]);
+  const [minute, setMinute] = useState(timeValue.split(':')[1]);
+  // const [moment, setMoment] = useState(timeValue);
+
+  const hours = [];
 
   for (let i = 0; i < 24; i += 1) {
-    hour.push(i.toString().padStart(2, 0));
+    hours.push(i.toString().padStart(2, 0));
   }
 
   const minutes = [];
@@ -13,6 +19,16 @@ export default function TimePicker(props) {
   for (let i = 0; i < 60; i += 1) {
     minutes.push(i.toString().padStart(2, 0));
   }
+
+  const choseHour = (e) => {
+    setHour(e.target.id);
+    getTime(`${e.target.id}:${minute}`);
+  };
+
+  const choseMinute = (e) => {
+    setMinute(e.target.id);
+    getTime(`${hour}:${e.target.id}`);
+  };
 
   return (
     <div className="time-box">
@@ -23,9 +39,12 @@ export default function TimePicker(props) {
       <div className="time-table">
         <div className="table hours">
           {
-            hour.map((ele) => (
+            hours.map((ele) => (
               <div
-                className="cell pointer"
+                className={classnames('cell pointer', { planTime: ele === hour })}
+                onClick={choseHour}
+                id={ele}
+
               >
                 {ele}
               </div>
@@ -36,7 +55,9 @@ export default function TimePicker(props) {
           {
             minutes.map((ele) => (
               <div
-                className="cell pointer"
+                className={classnames('cell pointer', { planTime: ele === minute })}
+                onClick={choseMinute}
+                id={ele}
               >
                 {ele}
               </div>

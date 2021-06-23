@@ -32,6 +32,10 @@ export default function Plan(props) {
     }
   };
 
+  const getTime = (value) => {
+    setTimeValue(value);
+  };
+
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { planWindow(false); }
   };
@@ -122,7 +126,7 @@ export default function Plan(props) {
               && (
               <div className="date-picker" ref={datePickerRef}>
                 <DatePicker getDateValue={getDateValue} datePickerBox={datePickerBox} dateValue={dateValue} timePicker={timePicker} />
-                {timePicker && <TimePicker />}
+                {timePicker && <TimePicker timeValue={timeValue} getTime={getTime} />}
               </div>
               )}
             <label htmlFor="plan-detail">描述
