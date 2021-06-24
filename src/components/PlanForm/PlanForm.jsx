@@ -16,7 +16,6 @@ export default function Plan(props) {
   const [timePicker, setTimePicker] = useState(false);
   const [dateValue, setDateValue] = useState(planDate);
   const [timeValue, setTimeValue] = useState('');
-
   const [img, setImg] = useState([]);
   const [color, setColor] = useState();
   const titleRef = useRef();
@@ -66,8 +65,7 @@ export default function Plan(props) {
 
     if (planInfo.color) {
       planWindow(false);
-      getPlanInfo([planInfo]);
-      console.log([planInfo]);
+      getPlanInfo(planInfo);
     }
   };
 

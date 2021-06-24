@@ -3,29 +3,29 @@ import ColorPicker from '../FormComponents/ColorPicker';
 
 export default function CalendarForm(props) {
   const { calendarWindow, getCalendarInfo } = props;
+  const [color, setColor] = useState();
+
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { calendarWindow(false); }
   };
   const titleRef = useRef();
 
-  const calendarInfo = { };
   const pickColor = (e) => {
-    const color = getComputedStyle(e.target).backgroundColor;
-    calendarInfo.color = color;
+    setColor(getComputedStyle(e.target).backgroundColor);
   };
 
   const atSubmit = () => {
-    const title = titleRef.current.value;
-    if (title !== '') {
-      calendarInfo.title = title;
-    }
+    const title = titleRef.current.value === '' ? '未命名的日曆' : titleRef.current.value;
+
+    const calendarInfo = {
+      title,
+      color,
+      isChecked: true,
+    };
 
     if (calendarInfo.title && calendarInfo.color) {
-      const infoArray = [];
-      infoArray.push(calendarInfo);
       calendarWindow(false);
-      console.log(infoArray);
-      getCalendarInfo(infoArray);
+      getCalendarInfo(calendarInfo);
     }
   };
 

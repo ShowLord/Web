@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import CalendarList from './CalenarList/CalendarList';
 
 export default function SideBar(props) {
-  const { calendarWindow, infoList } = props;
+  const { calendarWindow, calendarList, getCheckedStatus } = props;
 
   const atAddCalendar = () => {
     calendarWindow(true);
   };
-
-  console.log(infoList);
 
   return (
     <div className="side-bar">
@@ -16,11 +14,14 @@ export default function SideBar(props) {
       <button className="add-calendar pointer" onClick={atAddCalendar}> 新增日曆 ＋ </button>
       <div className="calendar-list">
         {
-        infoList.map((ele) => (
+        calendarList.map((ele, index) => (
           <CalendarList
             title={ele.title}
             color={ele.color}
             key={ele}
+            isChecked={ele.isChecked}
+            getCheckedStatus={getCheckedStatus}
+            index={index}
           />
         ))
         }

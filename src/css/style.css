@@ -398,10 +398,11 @@ button{
 .date-picker{
         border-radius: 20px;
         width: 80%;
-        height: 30vh;
+        height: 33vh;
         margin-top: 3%;
         position: absolute;
         display: flex;
+        z-index: 2;
     }
 
     .date-picker .calendar-box{
@@ -564,18 +565,60 @@ button{
     margin-top: 3%;
     font-weight: 300;
     width: 100%;
-    /* background-color: tomato; */
 }
 
-.form .plan-addTo div{
+.form .plan-addTo .addTo-box{
     background: rgba(205, 205, 208, 0.2);
     border-radius: 20px;
     outline: none;
-    width: 60%;
-    height: 2vh;
+    width: 57%;
+    min-height: 40px;
     margin-top: 3%;
-    padding:3% 5%;
+    padding: 10px 10% 0% 3%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
 }
+
+.form .plan-addTo .unfold{
+    width: 8%;
+    position: absolute;
+    right: 5%;
+    top: 35%;
+}
+
+.form .plan-addTo .picked-calendar{
+    background-color: #E6E6E6;
+    color: #4C5760;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 1% 8% 1% 4%;
+    margin: 0% 3% 10px 0%;
+    width:fit-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.form .plan-addTo .picked-calendar .dot{
+    margin-right: 10px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}
+
+.form .plan-addTo .picked-calendar .del{
+    width: 14px;
+    position: absolute;
+    right: 4%;
+    top: 5%;
+    /* background-color: tomato; */
+}
+
+
+
+
 
 
 

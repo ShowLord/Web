@@ -34,11 +34,15 @@ export default function Container() {
     setCalendarList(calendarList.concat(ele));
   };
 
+  const getCheckedStatus = (e, status) => {
+    calendarList[e].isChecked = status;
+  };
+
+  console.log(calendarList);
+
   const getPlanInfo = (ele) => {
     setPlanList(planList.concat(ele));
   };
-
-  console.log(planList);
 
   const getPlanDate = (time) => {
     setPlanDate(time);
@@ -57,13 +61,9 @@ export default function Container() {
     }
   };
 
-  // console.log(calendarList);
-  // console.log(planDate);
-  console.log(plan);
-
   return (
     <div className="container">
-      <SideBar calendarWindow={calendarWindow} infoList={calendarList} />
+      <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} />
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
       {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} />}
