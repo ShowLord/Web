@@ -355,6 +355,7 @@ button{
         resize: none;
         width: 60%;
     }
+    
 
     input::placeholder{
         color:  #C7C7C7;
@@ -496,19 +497,18 @@ button{
     .date-picker .time-box .moment{
         display: flex;
         justify-content: space-around;
-        width: 70%;
-        padding: 15% 0 10% 0;
+        width: 90%;
+        padding: 15% 5% 10% 5%;
         color: #4C5760;
         font-size: 15px;
     }
 
     .date-picker .time-box .time-table{
         display: flex;
-        justify-content: space-around;
-        width: 70%;
+        justify-content: center;
+        width: 100%;
         overflow: hidden;
         padding-bottom: 2%;
-
     }
 
     .date-picker .time-box .time-table .table{
@@ -516,9 +516,20 @@ button{
         flex-wrap: nowrap;
         flex-direction: column;
         justify-content: flex-start;
+        align-items:center;
         overflow: scroll;
-        /* background-color: tomato; */
+        overflow-x:hidden; 
+       
     }
+
+    .date-picker .time-box .time-table .table:first-child{
+        padding-left: 5%;
+    }
+
+    .date-picker .time-box .time-table .table:last-child{
+        padding-right: 5%;
+    }
+
 
     .date-picker .time-box .cell{
         color: #4C5760;
@@ -527,6 +538,7 @@ button{
         margin: 10%;
         padding: 1%;
         border-radius: 20px;
+        width: 60%;
     }
 
     .date-picker .time-box .planTime{
@@ -539,7 +551,32 @@ button{
         background-color: #8F969C;
     }
 
-    
+    .date-picker .table::-webkit-scrollbar{
+        display: none;
+      }
+
+  
+.form .plan-addTo{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: #B3B3B3;
+    margin-top: 3%;
+    font-weight: 300;
+    width: 100%;
+    /* background-color: tomato; */
+}
+
+.form .plan-addTo div{
+    background: rgba(205, 205, 208, 0.2);
+    border-radius: 20px;
+    outline: none;
+    width: 60%;
+    height: 2vh;
+    margin-top: 3%;
+    padding:3% 5%;
+}
+
 
 
 .caldendar-picker{

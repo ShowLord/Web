@@ -1,9 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect, useRef } from 'react';
 import ColorPicker from '../FormComponents/ColorPicker';
 import UploadImg from './UploadImg/UploadImg';
 import DatePicker from './DatePicker/DatePicker';
 import TimePicker from './DatePicker/TimePicker';
-import CalendarPicker from './CalendarPicker';
+import CalendarPicker from './CalendarPicker/CalendarPicker';
 import { timeNow } from '../Calendar/DateString';
 
 export default function Plan(props) {
@@ -15,7 +16,7 @@ export default function Plan(props) {
   const [timePicker, setTimePicker] = useState(false);
   const [dateValue, setDateValue] = useState(planDate);
   const [timeValue, setTimeValue] = useState('');
-  const [calendarPicker, setCalendarPicker] = useState(false);
+
   const [img, setImg] = useState([]);
   const [color, setColor] = useState();
   const titleRef = useRef();
@@ -89,18 +90,6 @@ export default function Plan(props) {
     if (datePicker === true && !datePickerRef.current.contains(e.target) && !timePickerRef.current.contains(e.target)) {
       setDatePicker(false);
     }
-
-    if (calendarPicker === true) {
-      setCalendarPicker(false);
-    }
-  };
-
-  const calendarPickerBox = (status) => {
-    if (status) {
-      setCalendarPicker(true);
-    } else {
-      setCalendarPicker(false);
-    }
   };
 
   return (
@@ -132,21 +121,7 @@ export default function Plan(props) {
             <label htmlFor="plan-detail">描述
               <textarea name="detail" id="plan-detail" rows="2" ref={descriptionRef} />
             </label>
-            <label htmlFor="plan-addTo">新增計畫至以下日曆
-              <input className="pointer " type="button" name="title" id="plan-addTo" onClick={calendarPickerBox} />
-            </label>
-            {calendarPicker && (
-            <div className="caldendar-picker">
-              {calendarList.map((obj) => (
-                <CalendarPicker
-                  key={Math.random()}
-                  title={obj.title}
-                  color={obj.color}
-                  calendarPickerBox={calendarPickerBox}
-                />
-              ))}
-            </div>
-            )}
+            <CalendarPicker calendarList={calendarList} />
 
             <label htmlFor="plan-todo-list">待辦清單
               <input type="input" name="title" id="plan-todo-list" />

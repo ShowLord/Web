@@ -30,6 +30,16 @@ export default function TimePicker(props) {
     getTime(`${hour}:${e.target.id}`);
   };
 
+  const hourRef = useRef();
+  const minuteRef = useRef();
+
+  useEffect(() => {
+    const viewHour = hourRef.current.children[hour];
+    const viewMinute = minuteRef.current.children[minute];
+    viewHour.scrollIntoView({ block: 'center' });
+    viewMinute.scrollIntoView({ block: 'center' });
+  }, []);
+
   return (
     <div className="time-box">
       <div className="moment">
@@ -37,21 +47,20 @@ export default function TimePicker(props) {
         <div>分</div>
       </div>
       <div className="time-table">
-        <div className="table hours">
+        <div className="table hours" ref={hourRef}>
           {
             hours.map((ele) => (
               <div
                 className={classnames('cell pointer', { planTime: ele === hour })}
                 onClick={choseHour}
                 id={ele}
-
               >
                 {ele}
               </div>
             ))
             }
         </div>
-        <div className="table minutes">
+        <div className="table minutes" ref={minuteRef}>
           {
             minutes.map((ele) => (
               <div
