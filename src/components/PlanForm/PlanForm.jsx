@@ -6,6 +6,7 @@ import DatePicker from './DatePicker/DatePicker';
 import TimePicker from './DatePicker/TimePicker';
 import CalendarPicker from './CalendarPicker/CalendarPicker';
 import { timeNow } from '../Calendar/DateString';
+import TodoList from './TodoList/TodoList';
 
 export default function Plan(props) {
   const {
@@ -120,10 +121,7 @@ export default function Plan(props) {
               <textarea name="detail" id="plan-detail" rows="2" ref={descriptionRef} />
             </label>
             <CalendarPicker calendarList={calendarList} />
-
-            <label htmlFor="plan-todo-list">待辦清單
-              <input type="input" name="title" id="plan-todo-list" />
-            </label>
+            <TodoList />
             <UploadImg getImgList={getImgList} />
           </div>
           <button className="submit pointer" onClick={atSubmit}> 新增計畫 ＋ </button>

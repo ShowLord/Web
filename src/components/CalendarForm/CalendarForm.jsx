@@ -21,6 +21,7 @@ export default function CalendarForm(props) {
       title,
       color,
       isChecked: true,
+      calendarId: `${Math.floor(Math.random() * 100)}`,
     };
 
     if (calendarInfo.title && calendarInfo.color) {

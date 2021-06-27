@@ -557,7 +557,7 @@ button{
       }
 
   
-.form .plan-addTo{
+.form .form-item{
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -615,6 +615,28 @@ button{
     top: 5%;
     /* background-color: tomato; */
 }
+
+.form .todo-list .wrap{
+    display: flex;
+    align-items: center;
+}
+
+.form .todo-list .add-todo{
+    width: 5%;
+    margin-left: 2%;
+}
+
+.form .todo-list .item{
+    display: flex;
+    align-items: center;
+}
+
+.form .todo-list .del{
+    width: 7%;
+    margin: 3% 0 0 3%;
+}
+
+
 
 
 
