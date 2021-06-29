@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TodoItem(props) {
+export default function odoItem(props) {
   const {
     removeItem, itemId, value, getValue,
   } = props;

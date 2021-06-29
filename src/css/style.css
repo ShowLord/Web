@@ -636,6 +636,22 @@ button{
     margin: 3% 0 0 3%;
 }
 
+.form .notify{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form .notify span{
+    line-height: 20px;
+}
+
+
+.form .notify .switch{
+    margin-left: 4%;
+    width: 4%;
+}
+
 
 
 
@@ -684,7 +700,7 @@ button{
         justify-content: space-evenly;
         width: 30%;
         height: 40px;
-        margin-top: 6%;
+        margin: 6% 0;
         padding: 0 4%;
     }
 

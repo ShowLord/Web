@@ -23,10 +23,7 @@ export default function CalendarPicler(props) {
 
   const removeCalendar = (e) => {
     setPickedCalendar(pickedCalendar.filter((obj) => obj.calendarId !== e.currentTarget.id));
-    console.log(e.currentTarget.id);
   };
-
-  console.log(pickedCalendar);
 
   return (
     <div>

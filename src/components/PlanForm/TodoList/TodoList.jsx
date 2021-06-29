@@ -10,10 +10,7 @@ export default function TodoList() {
 
   const removeItem = (item) => {
     setTodoItem(todoItem.filter((obj) => obj.id !== item));
-    console.log(todoItem);
   };
-
-  console.log(todoItem);
 
   const getValue = (itemId, newValue) => {
     const item = todoItem.find((obj) => obj.id === itemId);
