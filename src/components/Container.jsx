@@ -39,6 +39,7 @@ export default function Container() {
   };
 
   console.log(calendarList);
+  console.log(planList);
 
   const getPlanInfo = (ele) => {
     setPlanList(planList.concat(ele));

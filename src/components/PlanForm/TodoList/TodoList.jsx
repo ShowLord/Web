@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoItem from './TodoItem';
 
-export default function TodoList() {
+export default function TodoList(props) {
+  const { getTodoList } = props;
   const [todoItem, setTodoItem] = useState([]);
 
   const addTodoItem = () => {
@@ -16,6 +17,10 @@ export default function TodoList() {
     const item = todoItem.find((obj) => obj.id === itemId);
     item.value = newValue;
   };
+
+  useEffect(() => {
+    getTodoList(todoItem);
+  }, [todoItem]);
 
   return (
     <div className="todo-list form-item">

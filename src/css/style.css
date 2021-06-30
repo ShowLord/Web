@@ -785,6 +785,36 @@ button{
         margin: 4% 0 0 55%;
         border-radius: 15px;
     }
+
+    .view-plan .view-todo .todo-item{
+        display: flex;
+        margin-top: 2%;
+    }
+
+    .view-plan .view-todo span{
+        color: #393939;
+        font-size: 16px;
+        margin-left: 2%;
+
+    }
+
+    .view-plan .view-todo .box-trigger{
+        width: 4%;
+        position: relative;
+    }
+
+    .view-plan .view-todo .checked{
+        width: 100%;
+        display: none;
+        position: absolute;
+        top: 5%;
+        left: 10%;
+    }
+
+    .view-plan .view-todo .checked.active{
+        display: block;
+        
+    }
     
 
 

@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ViewTodo from './ViewTodo';
 
 export default function ViewPlan(props) {
   const { plan, viewPlanStatus } = props;
-
+  
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { viewPlanStatus(false); }
   };
   const closeIcon = () => {
     viewPlanStatus(false);
   };
+
+  
 
   return (
     <div className="mask" onClick={closeItem}>
@@ -29,23 +32,34 @@ export default function ViewPlan(props) {
           </div>
           <div className="scroll-content">
             <label htmlFor="plan-time">時間
-              <input className="dateButton" type="button" name="time" defaultValue={plan.date} />
+              <input className="dateButton" type="button" name="time" defaultValue={`${plan.date} ${plan.time}`} />
             </label>
             <label htmlFor="plan-detail">描述
               <textarea name="detail" id="plan-detail" rows="2" readOnly defaultValue={plan.description} />
             </label>
-            {plan.imgList.length >= 1 && (
-            <div className="album">
-              {plan.imgList.map((ele) => (
-                <div className="preview pointer img-cover">
-                  <img
-                    src={ele}
-                    alt="img"
+            {plan.todoList.length >= 1 && (
+              <div className="form-item view-todo">待辦清單
+                {plan.todoList.map((ele) => (
+                  <ViewTodo
+                    key={ele.id}
+                    value={ele.value}
+                    color={plan.color}
                   />
-                </div>
-              ))}
-            </div>
-            ) }
+                ))}
+              </div>
+            )}
+            {plan.imgList.length >= 1 && (
+              <div className="album">
+                {plan.imgList.map((ele) => (
+                  <div className="preview pointer img-cover">
+                    <img
+                      src={ele}
+                      alt="img"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
             <label className="comment" htmlFor="plan-detail">回應
               <textarea name="detail" id="plan-detail" rows="2" placeholder="輸入文字....." />
               <button

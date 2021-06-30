@@ -19,6 +19,7 @@ export default function Plan(props) {
   const [timeValue, setTimeValue] = useState('');
   const [img, setImg] = useState([]);
   const [color, setColor] = useState();
+  const [todoList, setTodoList] = useState();
   const titleRef = useRef();
   const descriptionRef = useRef();
   const dateDefault = `${dateValue} ${timeValue}`;
@@ -53,15 +54,21 @@ export default function Plan(props) {
     setImg(list);
   };
 
+  const getTodoList = (list) => {
+    setTodoList(list);
+  };
+
   const atSubmit = () => {
     const title = titleRef.current.value === '' ? '未命名的標題' : titleRef.current.value;
 
     const planInfo = {
       title,
       date: dateValue,
+      time: timeValue,
       description: descriptionRef.current.value,
       imgList: img,
       color,
+      todoList,
     };
 
     if (planInfo.color) {
@@ -121,7 +128,7 @@ export default function Plan(props) {
               <textarea name="detail" id="plan-detail" rows="2" ref={descriptionRef} />
             </label>
             <CalendarPicker calendarList={calendarList} />
-            <TodoList />
+            <TodoList getTodoList={getTodoList} />
             <UploadImg getImgList={getImgList} />
             <div className="notify form-item">
               <span>是否通知協作者 ?</span>
