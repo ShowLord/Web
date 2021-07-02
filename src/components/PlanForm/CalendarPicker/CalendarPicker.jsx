@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function CalendarPicler(props) {
-  const { calendarList } = props;
+export default function CalendarPicker(props) {
+  const { calendarList, getPickedCalendar } = props;
   const [calendarPicker, setCalendarPicker] = useState(false);
   const [pickedCalendar, setPickedCalendar] = useState(calendarList.filter((obj) => obj.isChecked === true));
 
@@ -25,13 +25,17 @@ export default function CalendarPicler(props) {
     setPickedCalendar(pickedCalendar.filter((obj) => obj.calendarId !== e.currentTarget.id));
   };
 
+  useEffect(() => {
+    getPickedCalendar(pickedCalendar.map((ele) => (ele.calendarId)));
+  }, [pickedCalendar]);
+
   return (
     <div>
       <div className="plan-addTo form-item">新增計畫至以下日曆
         <div className="addTo-box">
           {
             pickedCalendar.map((obj) => (
-              <div className="picked-calendar pointer" onClick={removeCalendar} id={obj.calendarId}>
+              <div className="picked-calendar pointer" onClick={removeCalendar} id={obj.calendarId} key={obj.calendarId}>
                 <div className="dot" style={{ backgroundColor: obj.color }} />
                 {obj.title}
                 <svg className="del" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">

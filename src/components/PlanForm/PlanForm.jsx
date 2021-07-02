@@ -18,8 +18,9 @@ export default function Plan(props) {
   const [dateValue, setDateValue] = useState(planDate);
   const [timeValue, setTimeValue] = useState('');
   const [img, setImg] = useState([]);
-  const [color, setColor] = useState();
+  const [color, setColor] = useState(calendarList[0].color);
   const [todoList, setTodoList] = useState();
+  const [addTo, setAddTo] = useState();
   const titleRef = useRef();
   const descriptionRef = useRef();
   const dateDefault = `${dateValue} ${timeValue}`;
@@ -58,6 +59,10 @@ export default function Plan(props) {
     setTodoList(list);
   };
 
+  const getPickedCalendar = (list) => {
+    setAddTo(list);
+  };
+
   const atSubmit = () => {
     const title = titleRef.current.value === '' ? '未命名的標題' : titleRef.current.value;
 
@@ -69,12 +74,22 @@ export default function Plan(props) {
       imgList: img,
       color,
       todoList,
+      addTo,
     };
 
-    if (planInfo.color) {
-      planWindow(false);
+    if (planInfo.addTo.length > 1) {
+      const arr = [];
+      const count = planInfo.addTo.length;
+      for (let i = 0; i < count; i += 1) {
+        const copy = { ...planInfo };
+        copy.addTo = planInfo.addTo[i];
+        arr.push(copy);
+      }
+      getPlanInfo(arr);
+    } else {
       getPlanInfo(planInfo);
     }
+    planWindow(false);
   };
 
   const datePickerBox = (status) => {
@@ -127,7 +142,7 @@ export default function Plan(props) {
             <label htmlFor="plan-detail">描述
               <textarea name="detail" id="plan-detail" rows="2" ref={descriptionRef} />
             </label>
-            <CalendarPicker calendarList={calendarList} />
+            <CalendarPicker calendarList={calendarList} getPickedCalendar={getPickedCalendar} />
             <TodoList getTodoList={getTodoList} />
             <UploadImg getImgList={getImgList} />
             <div className="notify form-item">

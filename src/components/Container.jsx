@@ -9,6 +9,7 @@ export default function Container() {
   const [addCalendar, setAddCalendar] = useState(false);
   const [addPlan, setAddPlan] = useState(false);
   const [calendarList, setCalendarList] = useState([]);
+  const [allPlanList, setAllPlanList] = useState([]);
   const [planList, setPlanList] = useState([]);
   const [planDate, setPlanDate] = useState();
   const [plan, setPlan] = useState({});
@@ -39,10 +40,10 @@ export default function Container() {
   };
 
   console.log(calendarList);
-  console.log(planList);
+  console.log(allPlanList);
 
   const getPlanInfo = (ele) => {
-    setPlanList(planList.concat(ele));
+    setAllPlanList(allPlanList.concat(ele));
   };
 
   const getPlanDate = (time) => {
@@ -62,10 +63,15 @@ export default function Container() {
     }
   };
 
+  // useEffect(() => {
+  //   const pickedCalendar = calendarList.filter((ele) => (ele.isChecked === true));
+  //   const showPlan = allPlanList.filter((ele) => (ele.calendarId.includes(pickedCalendar)));
+  // }, [planList]);
+
   return (
     <div className="container">
       <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} />
-      <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
+      <Main planWindow={planWindow} planList={allPlanList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
       {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} />}
       {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} />}

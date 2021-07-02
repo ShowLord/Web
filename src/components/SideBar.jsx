@@ -18,7 +18,7 @@ export default function SideBar(props) {
           <CalendarList
             title={ele.title}
             color={ele.color}
-            key={ele}
+            key={ele.calendarId}
             isChecked={ele.isChecked}
             getCheckedStatus={getCheckedStatus}
             index={index}
