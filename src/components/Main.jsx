@@ -11,6 +11,7 @@ export default function Main(props) {
     planWindow(true);
     getPlanDate(currentDayId);
   };
+  console.log(`main${planList}`);
 
   return (
 

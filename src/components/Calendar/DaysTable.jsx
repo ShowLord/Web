@@ -28,7 +28,7 @@ export default function DaysTable(props) {
         {
           dailyPlanList.map((obj) => (
             <DailyPlan
-              key={obj.time + obj.color}
+              key={obj.time + obj.addTo}
               plan={obj}
               getPlan={getPlan}
             />

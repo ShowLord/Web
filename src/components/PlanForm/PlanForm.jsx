@@ -77,18 +77,14 @@ export default function Plan(props) {
       addTo,
     };
 
-    if (planInfo.addTo.length > 1) {
-      const arr = [];
-      const count = planInfo.addTo.length;
-      for (let i = 0; i < count; i += 1) {
-        const copy = { ...planInfo };
-        copy.addTo = planInfo.addTo[i];
-        arr.push(copy);
-      }
-      getPlanInfo(arr);
-    } else {
-      getPlanInfo(planInfo);
+    const arr = [];
+    const count = planInfo.addTo.length;
+    for (let i = 0; i < count; i += 1) {
+      const copy = { ...planInfo };
+      copy.addTo = planInfo.addTo[i];
+      arr.push(copy);
     }
+    getPlanInfo(arr);
     planWindow(false);
   };
 
