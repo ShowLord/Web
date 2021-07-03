@@ -9,7 +9,7 @@ export default function Container() {
   const [addCalendar, setAddCalendar] = useState(false);
   const [addPlan, setAddPlan] = useState(false);
   const [calendarList, setCalendarList] = useState([]);
-  const [checkedList, setCheckedList] = useState([]);
+  const [checkedList, setCheckedList] = useState(calendarList.filter((ele) => (ele.isChecked === true)));
   const [allPlanList, setAllPlanList] = useState([]);
   const [planList, setPlanList] = useState([]);
   const [planDate, setPlanDate] = useState();
@@ -34,10 +34,12 @@ export default function Container() {
 
   const getCalendarInfo = (ele) => {
     setCalendarList(calendarList.concat(ele));
+    setCheckedList(checkedList.concat(ele));
   };
 
   const getCheckedStatus = (e, status) => {
     calendarList[e].isChecked = status;
+    setCheckedList(calendarList.filter((ele) => (ele.isChecked === true)));
   };
 
   console.log(calendarList);
@@ -65,16 +67,12 @@ export default function Container() {
   };
 
   useEffect(() => {
-    const pickedCalendar = calendarList.filter((ele) => (ele.isChecked === true));
     const showPlan = [];
-    for (let i = 0; i < pickedCalendar.length; i += 1) {
-      showPlan.push(allPlanList.filter((ele) => (ele.addTo === (pickedCalendar[i].calendarId))));
+    for (let i = 0; i < checkedList.length; i += 1) {
+      showPlan.push(allPlanList.filter((ele) => (ele.addTo === (checkedList[i].calendarId))));
     }
-    setCheckedList(pickedCalendar);
     setPlanList(showPlan.flat());
-  }, [allPlanList, checkedList]);
-
-  console.log(planList);
+  }, [checkedList, allPlanList]);
 
   return (
     <div className="container">
