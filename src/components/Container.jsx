@@ -66,6 +66,17 @@ export default function Container() {
     }
   };
 
+  const todoChecked = (id, status) => {
+    allPlanList.forEach((ele) => {
+      if (ele.todoList.find((e) => (e.id === id))) {
+        const target = ele.todoList.find((e) => (e.id === id));
+        target.isChecked = status;
+        console.log(target);
+      }
+    });
+    setAllPlanList(allPlanList);
+  };
+
   useEffect(() => {
     const showPlan = [];
     for (let i = 0; i < checkedList.length; i += 1) {
@@ -76,11 +87,11 @@ export default function Container() {
 
   return (
     <div className="container">
-      <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} />
+      <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} />
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
       {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} />}
-      {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} />}
+      {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} />}
     </div>
   );
 }

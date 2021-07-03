@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CalendarList from './CalenarList/CalendarList';
 
 export default function SideBar(props) {
-  const { calendarWindow, calendarList, getCheckedStatus } = props;
+  const {
+    calendarWindow, calendarList, getCheckedStatus, allPlanList,
+  } = props;
 
   const atAddCalendar = () => {
     calendarWindow(true);
@@ -22,6 +24,8 @@ export default function SideBar(props) {
             isChecked={ele.isChecked}
             getCheckedStatus={getCheckedStatus}
             index={index}
+            allPlanList={allPlanList}
+            calendarId={ele.calendarId}
           />
         ))
         }

@@ -73,7 +73,7 @@ export default function Plan(props) {
       description: descriptionRef.current.value,
       imgList: img,
       color,
-      todoList,
+      todoList: todoList.filter((ele) => (ele.value !== null)),
       addTo,
     };
 

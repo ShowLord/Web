@@ -2,16 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import ViewTodo from './ViewTodo';
 
 export default function ViewPlan(props) {
-  const { plan, viewPlanStatus } = props;
-  
+  const { plan, viewPlanStatus, todoChecked } = props;
+
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { viewPlanStatus(false); }
   };
   const closeIcon = () => {
     viewPlanStatus(false);
   };
-
-  
 
   return (
     <div className="mask" onClick={closeItem}>
@@ -42,8 +40,11 @@ export default function ViewPlan(props) {
                 {plan.todoList.map((ele) => (
                   <ViewTodo
                     key={ele.id}
+                    id={ele.id}
                     value={ele.value}
                     color={plan.color}
+                    todoChecked={todoChecked}
+                    isChecked={ele.isChecked}
                   />
                 ))}
               </div>

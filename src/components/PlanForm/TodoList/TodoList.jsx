@@ -6,7 +6,7 @@ export default function TodoList(props) {
   const [todoItem, setTodoItem] = useState([]);
 
   const addTodoItem = () => {
-    setTodoItem(todoItem.concat({ value: null, id: `${Date.now()}` }));
+    setTodoItem(todoItem.concat({ value: null, id: `${Date.now()}`, isChecked: false }));
   };
 
   const removeItem = (item) => {
