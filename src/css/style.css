@@ -711,15 +711,17 @@ button{
 
     .album{
         margin: 10% 0;
-        width: 80%;
+        width: 90%;
         height: 30vh;
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: flex-start;
+        overflow: scroll;
     }
 
     .album .preview {    
-        width: 46%;
+        width: 40%;
         height: 40%;
         overflow:hidden;
         border-radius: 10px;
@@ -731,7 +733,9 @@ button{
     }
 
     .album img{
-        height: 130%;
+        min-width: 100%;
+        min-height: 100%;
+
     }
 
     .album .img-hover {
