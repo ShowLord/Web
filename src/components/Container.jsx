@@ -15,6 +15,7 @@ export default function Container() {
   const [planDate, setPlanDate] = useState();
   const [plan, setPlan] = useState({});
   const [viewPlan, setViewPlan] = useState();
+  const [isPreviewing, setIsPreviewing] = useState({ imgSrc: null, status: false });
 
   const calendarWindow = (status) => {
     if (status) {
@@ -29,6 +30,7 @@ export default function Container() {
       setAddPlan(true);
     } else {
       setAddPlan(false);
+      setIsPreviewing({ imgSrc: null, status: false });
     }
   };
 
@@ -42,8 +44,8 @@ export default function Container() {
     setCheckedList(calendarList.filter((ele) => (ele.isChecked === true)));
   };
 
-  console.log(calendarList);
-  console.log(allPlanList);
+  // console.log(calendarList);
+  // console.log(allPlanList);
 
   const getPlanInfo = (ele) => {
     setAllPlanList(allPlanList.concat(ele));
@@ -77,6 +79,10 @@ export default function Container() {
     setAllPlanList(allPlanList);
   };
 
+  const getImgPreview = (src, status) => {
+    setIsPreviewing({ imgSrc: src, status });
+  };
+
   useEffect(() => {
     const showPlan = [];
     for (let i = 0; i < checkedList.length; i += 1) {
@@ -90,8 +96,17 @@ export default function Container() {
       <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} />
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
-      {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} />}
-      {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} />}
+      {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} />}
+      {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} />}
+      {(isPreviewing.status && (addPlan || viewPlan)) && (
+        <div className="img-mask" onClick={(e) => (setIsPreviewing({ imgSrc: null, status: false }))}>
+          <img
+            className="img-preview"
+            src={isPreviewing.imgSrc}
+            alt="img"
+          />
+        </div>
+      )}
     </div>
   );
 }

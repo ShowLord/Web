@@ -731,7 +731,7 @@ button{
     }
 
     .album img{
-    height: 130%;
+        height: 130%;
     }
 
     .album .img-hover {
@@ -754,6 +754,26 @@ button{
     .album .img-hover svg:hover{
         fill: #FFFFFF;
     }
+
+    .img-mask{
+        position: absolute;
+        height: 100vh;
+        z-index: 4;
+        width: 65%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .img-mask .img-preview{
+        max-width: 40%;
+        max-height: 40%;
+        border-radius: 40px;
+
+    }
+
+
 
 .view-plan .form{
     margin-bottom: 3%;

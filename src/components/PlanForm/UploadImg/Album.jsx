@@ -1,19 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function UploadImg(props) {
-  const { src } = props;
+  const {
+    src, removeImg, idx, getImgPreview,
+  } = props;
   const [isHovered, setIsHovered] = useState(false);
 
+  const onRemove = () => {
+    removeImg(idx);
+  };
+
+  const onView = () => {
+    getImgPreview(src, true);
+  };
+
   return (
-    <div className="preview pointer img-cover">
+    <div className="preview pointer ">
       <img
         src={src}
         alt="img"
         onMouseEnter={() => setIsHovered(true)}
       />
       {isHovered && (
-        <div className="img-hover pointer" onMouseLeave={() => setIsHovered(false)}>
-          <svg className="del pointer" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div onClick={onView} className="img-hover pointer" onMouseLeave={() => setIsHovered(false)}>
+          <svg onClick={onRemove} className="del pointer" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"
               clipRule="evenodd"

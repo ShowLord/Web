@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Album from './Album';
 
 export default function UploadImg(props) {
-  const { getImgList } = props;
+  const { getImgList, getImgPreview } = props;
   const [imgList, setImgList] = useState([]);
   const handleFiles = (e) => {
     for (let i = 0; i < e.target.files.length; i += 1) {
@@ -13,6 +13,10 @@ export default function UploadImg(props) {
       };
       reader.readAsDataURL(img);
     }
+  };
+
+  const removeImg = (idx) => {
+    setImgList(imgList.filter((ele, index) => (index !== idx)));
   };
 
   useEffect(() => { getImgList(imgList); }, [imgList]);
@@ -28,10 +32,14 @@ export default function UploadImg(props) {
       </label>
       {imgList.length >= 1 && (
       <div className="album">
-        {imgList.map((ele) => (
+        {imgList.map((ele, idx) => (
           <Album
             src={ele}
             key={Math.random()}
+            removeImg={removeImg}
+            idx={idx}
+            getImgPreview={getImgPreview}
+
           />
         ))}
       </div>

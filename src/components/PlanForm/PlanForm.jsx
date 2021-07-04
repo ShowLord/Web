@@ -10,7 +10,7 @@ import TodoList from './TodoList/TodoList';
 
 export default function Plan(props) {
   const {
-    planWindow, getPlanInfo, planDate, calendarList,
+    planWindow, getPlanInfo, planDate, calendarList, getImgPreview,
   } = props;
 
   const [datePicker, setDatePicker] = useState(false);
@@ -140,7 +140,7 @@ export default function Plan(props) {
             </label>
             <CalendarPicker calendarList={calendarList} getPickedCalendar={getPickedCalendar} />
             <TodoList getTodoList={getTodoList} />
-            <UploadImg getImgList={getImgList} />
+            <UploadImg getImgList={getImgList} getImgPreview={getImgPreview} />
             <div className="notify form-item">
               <span>是否通知協作者 ?</span>
               <svg className="switch pointer" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">

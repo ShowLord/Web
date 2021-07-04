@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import ViewTodo from './ViewTodo';
 
 export default function ViewPlan(props) {
-  const { plan, viewPlanStatus, todoChecked } = props;
+  const {
+    plan, viewPlanStatus, todoChecked, getImgPreview,
+  } = props;
 
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { viewPlanStatus(false); }
@@ -52,10 +54,11 @@ export default function ViewPlan(props) {
             {plan.imgList.length >= 1 && (
               <div className="album">
                 {plan.imgList.map((ele) => (
-                  <div className="preview pointer img-cover">
+                  <div className="preview pointer">
                     <img
                       src={ele}
                       alt="img"
+                      onClick={() => (getImgPreview(ele, true))}
                     />
                   </div>
                 ))}
