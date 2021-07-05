@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
+import classnames from 'classnames';
 import ViewTodo from './ViewTodo';
+import Comment from './Comment';
 
 export default function ViewPlan(props) {
   const {
-    plan, viewPlanStatus, todoChecked, getImgPreview,
+    plan, viewPlanStatus, todoChecked, getImgPreview, getComments,
   } = props;
+
+  const [commentsList, setCommentsList] = useState(plan.comments);
 
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { viewPlanStatus(false); }
@@ -12,6 +16,28 @@ export default function ViewPlan(props) {
   const closeIcon = () => {
     viewPlanStatus(false);
   };
+
+  const onReplyHeight = (e) => {
+    if (e.key === 'Enter') {
+      e.target.rows += 1;
+    } else if (e.target.rows > 1 && e.key === 'Backspace') {
+      e.target.rows -= 1;
+    }
+  };
+
+  const replyRef = useRef();
+
+  const onReply = () => {
+    const reply = replyRef.current.value;
+    if (reply !== '') {
+      setCommentsList(commentsList.concat(reply));
+      getComments(reply);
+      replyRef.current.value = '';
+    }
+  };
+
+  console.log(commentsList);
+  console.log(plan);
 
   return (
     <div className="mask" onClick={closeItem}>
@@ -65,8 +91,10 @@ export default function ViewPlan(props) {
               </div>
             )}
             <label className="comment" htmlFor="plan-detail">回應
-              <textarea name="detail" id="plan-detail" rows="2" placeholder="輸入文字....." />
+              {commentsList.length >= 1 && <Comment commentList={commentsList} />}
+              <textarea className={classnames('reply', { changeColor: commentsList.length >= 1 })} onKeyDown={onReplyHeight} ref={replyRef} name="detail" id="plan-detail" rows="1" aria-multiline="true" placeholder="輸入文字....." />
               <button
+                onClick={onReply}
                 className="pointer"
                 style={{ backgroundColor: plan.color }}
               >留言

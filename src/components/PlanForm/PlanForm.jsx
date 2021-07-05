@@ -75,6 +75,8 @@ export default function Plan(props) {
       color,
       todoList: todoList.filter((ele) => (ele.value !== null)),
       addTo,
+      planId: `${dateValue}${timeValue}${Math.floor(Math.random() * 100)}`,
+      comments: [],
     };
 
     const arr = [];

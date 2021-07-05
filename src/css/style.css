@@ -231,7 +231,7 @@ button{
 .plan-window{
     height: 100vh;
     width: 35%;
-    background-color: #FCFCFC;
+    background-color: #FFFFFF;
     position: absolute;
     right: 0;
     top: 0;
@@ -250,7 +250,7 @@ button{
 .calendar-window{
     height: 100vh;
     width: 25%;
-    background-color: #FCFCFC;
+    background-color: #FFFFFF;
     position: absolute;
     right: 0;
     top: 0;
@@ -837,8 +837,52 @@ button{
 
     .view-plan .view-todo .checked.active{
         display: block;
-        
     }
+
+    .view-plan .comment .reply{
+        z-index: 2;
+    }
+
+    .view-plan .comment .reply.changeColor{
+        background-color: #FCFCFC;
+    }
+
+    .view-plan .comments{
+        background-color: #F3F3F3;
+        width: 66%;
+        border-radius: 25px;
+        padding: 4% 0 8% 4%;
+        margin-top: -6%;
+        position: relative;
+        bottom: -50px;
+    }
+
+    .view-plan .comment-card{
+        display: flex;
+        margin-bottom: 5%;
+    }
+
+    .view-plan .comments img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin: 0 5% 0 0;
+    }
+
+    .view-plan .comment-card div{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .view-plan .comments .user{  
+        color: #8F969C;
+        font-weight: 500;
+    }
+
+    .view-plan .comments .content{
+        color: #393939;
+    }
+
     
 
 

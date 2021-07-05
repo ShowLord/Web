@@ -83,6 +83,17 @@ export default function Container() {
     setIsPreviewing({ imgSrc: src, status });
   };
 
+  const getComments = (value) => {
+    if (plan.comments !== []) {
+      plan.comments = plan.comments.concat(value);
+    } else {
+      plan.comments = value;
+    }
+    console.log('!!!!!');
+  };
+
+  console.log(plan);
+
   useEffect(() => {
     const showPlan = [];
     for (let i = 0; i < checkedList.length; i += 1) {
@@ -97,7 +108,7 @@ export default function Container() {
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
       {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} />}
-      {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} />}
+      {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} getComments={getComments} />}
       {(isPreviewing.status && (addPlan || viewPlan)) && (
         <div className="img-mask" onClick={(e) => (setIsPreviewing({ imgSrc: null, status: false }))}>
           <img
