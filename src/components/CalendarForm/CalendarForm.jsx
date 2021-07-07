@@ -3,15 +3,15 @@ import ColorPicker from '../FormComponents/ColorPicker';
 
 export default function CalendarForm(props) {
   const { calendarWindow, getCalendarInfo } = props;
-  const [color, setColor] = useState();
+  const [color, setColor] = useState({ colorName: 'red', rgb: 'rgb(255, 138, 140)' });
 
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { calendarWindow(false); }
   };
   const titleRef = useRef();
 
-  const pickColor = (e) => {
-    setColor(getComputedStyle(e.target).backgroundColor);
+  const pickColor = (obj) => {
+    setColor(obj);
   };
 
   const atSubmit = () => {
@@ -24,10 +24,8 @@ export default function CalendarForm(props) {
       calendarId: `${Math.floor(Math.random() * 100)}`,
     };
 
-    if (calendarInfo.title && calendarInfo.color) {
-      calendarWindow(false);
-      getCalendarInfo(calendarInfo);
-    }
+    calendarWindow(false);
+    getCalendarInfo(calendarInfo);
   };
 
   return (
@@ -36,7 +34,7 @@ export default function CalendarForm(props) {
         <img className="close pointer" src={require('img/close.png')} alt="close" onClick={closeItem} />
         <div className="form">
           <div className="section"> 新增日曆</div>
-          <ColorPicker pickColor={pickColor} />
+          <ColorPicker pickColor={pickColor} defaultColor={color} />
           <label htmlFor="calendar-title" className="title">標題
             <input type="input" name="title" id="calendar-title" ref={titleRef} />
           </label>

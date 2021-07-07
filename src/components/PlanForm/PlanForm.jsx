@@ -10,7 +10,7 @@ import TodoList from './TodoList/TodoList';
 
 export default function Plan(props) {
   const {
-    planWindow, getPlanInfo, planDate, calendarList, getImgPreview,
+    planWindow, getPlanInfo, planDate, calendarList, getImgPreview, checkedList,
   } = props;
 
   const [datePicker, setDatePicker] = useState(false);
@@ -18,7 +18,7 @@ export default function Plan(props) {
   const [dateValue, setDateValue] = useState(planDate);
   const [timeValue, setTimeValue] = useState('');
   const [img, setImg] = useState([]);
-  const [color, setColor] = useState(calendarList[0].color);
+  const [color, setColor] = useState(checkedList[0].color);
   const [todoList, setTodoList] = useState();
   const [addTo, setAddTo] = useState();
   const titleRef = useRef();
@@ -47,8 +47,8 @@ export default function Plan(props) {
     planWindow(false);
   };
 
-  const pickColor = (e) => {
-    setColor(getComputedStyle(e.target).backgroundColor);
+  const pickColor = (obj) => {
+    setColor(obj);
   };
 
   const getImgList = (list) => {
@@ -119,7 +119,7 @@ export default function Plan(props) {
         </svg>
         <div className="form">
           <div className="section"> 新增計畫</div>
-          <ColorPicker pickColor={pickColor} />
+          <ColorPicker pickColor={pickColor} defaultColor={color} />
           <div className="scroll-content">
             <label htmlFor="plan-title">標題
               <input type="text" name="title" id="plan-title" ref={titleRef} />

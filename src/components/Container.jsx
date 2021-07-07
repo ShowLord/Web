@@ -9,7 +9,7 @@ export default function Container() {
   const [addCalendar, setAddCalendar] = useState(false);
   const [addPlan, setAddPlan] = useState(false);
   const [calendarList, setCalendarList] = useState([{
-    title: 'Show Lo 的日曆', color: 'rgb(255, 138, 140)', isChecked: true, calendarId: '01',
+    title: 'Show Lo 的日曆', color: { colorName: 'red', rgb: 'rgb(255, 138, 140)' }, isChecked: true, calendarId: '01',
   }]);
   const [checkedList, setCheckedList] = useState(calendarList.filter((ele) => (ele.isChecked === true)));
   const [allPlanList, setAllPlanList] = useState([]);
@@ -106,7 +106,7 @@ export default function Container() {
       <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} />
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
-      {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} />}
+      {addPlan && <PlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} checkedList={checkedList} />}
       {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} getComments={getComments} />}
       {(isPreviewing.status && (addPlan || viewPlan)) && (
         <div className="img-mask" onClick={(e) => (setIsPreviewing({ imgSrc: null, status: false }))}>
