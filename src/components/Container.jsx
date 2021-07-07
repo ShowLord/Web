@@ -8,7 +8,9 @@ import ViewPlan from './ViewPlan/ViewPlan';
 export default function Container() {
   const [addCalendar, setAddCalendar] = useState(false);
   const [addPlan, setAddPlan] = useState(false);
-  const [calendarList, setCalendarList] = useState([]);
+  const [calendarList, setCalendarList] = useState([{
+    title: 'Show Lo 的日曆', color: 'rgb(255, 138, 140)', isChecked: true, calendarId: '01',
+  }]);
   const [checkedList, setCheckedList] = useState(calendarList.filter((ele) => (ele.isChecked === true)));
   const [allPlanList, setAllPlanList] = useState([]);
   const [planList, setPlanList] = useState([]);
@@ -44,7 +46,7 @@ export default function Container() {
     setCheckedList(calendarList.filter((ele) => (ele.isChecked === true)));
   };
 
-  // console.log(calendarList);
+  console.log(calendarList);
   // console.log(allPlanList);
 
   const getPlanInfo = (ele) => {
@@ -89,10 +91,7 @@ export default function Container() {
     } else {
       plan.comments = value;
     }
-    console.log('!!!!!');
   };
-
-  console.log(plan);
 
   useEffect(() => {
     const showPlan = [];

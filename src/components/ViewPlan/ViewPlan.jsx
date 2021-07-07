@@ -9,6 +9,7 @@ export default function ViewPlan(props) {
   } = props;
 
   const [commentsList, setCommentsList] = useState(plan.comments);
+  const [boxHeight, setBoxHeight] = useState(1);
 
   const closeItem = (e) => {
     if (e.target === e.currentTarget) { viewPlanStatus(false); }
@@ -17,18 +18,15 @@ export default function ViewPlan(props) {
     viewPlanStatus(false);
   };
 
-  const onReplyHeight = (e) => {
-    if (e.key === 'Enter') {
-      e.target.rows += 1;
-    } else if (e.target.rows > 1 && e.key === 'Backspace') {
-      e.target.rows -= 1;
-    }
-  };
-
   const replyRef = useRef();
 
-  const onReply = () => {
+  const onReplyBox = () => {
     const reply = replyRef.current.value;
+    setBoxHeight(reply.split('\n').length);
+  };
+
+  const onReply = () => {
+    const reply = replyRef.current.value.trim();
     if (reply !== '') {
       setCommentsList(commentsList.concat(reply));
       getComments(reply);
@@ -92,7 +90,7 @@ export default function ViewPlan(props) {
             )}
             <label className="comment" htmlFor="plan-detail">回應
               {commentsList.length >= 1 && <Comment commentList={commentsList} />}
-              <textarea className={classnames('reply', { changeColor: commentsList.length >= 1 })} onKeyDown={onReplyHeight} ref={replyRef} name="detail" id="plan-detail" rows="1" aria-multiline="true" placeholder="輸入文字....." />
+              <textarea className={classnames('reply', { changeColor: commentsList.length >= 1 })} onChange={onReplyBox} ref={replyRef} name="detail" id="plan-detail" rows={boxHeight} aria-multiline="true" placeholder="輸入文字....." />
               <button
                 onClick={onReply}
                 className="pointer"

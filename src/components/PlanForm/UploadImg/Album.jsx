@@ -10,8 +10,10 @@ export default function UploadImg(props) {
     removeImg(idx);
   };
 
-  const onView = () => {
-    getImgPreview(src, true);
+  const onView = (e) => {
+    if (e.target === e.currentTarget) {
+      getImgPreview(src, true);
+    }
   };
 
   return (
@@ -19,7 +21,7 @@ export default function UploadImg(props) {
       <img
         src={src}
         alt="img"
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseOver={() => setIsHovered(true)}
       />
       {isHovered && (
         <div onClick={onView} className="img-hover pointer" onMouseLeave={() => setIsHovered(false)}>

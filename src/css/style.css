@@ -881,6 +881,7 @@ button{
 
     .view-plan .comments .content{
         color: #393939;
+        white-space: pre-line;
     }
 
     
