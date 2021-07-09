@@ -31,7 +31,6 @@ export default function CalendarList(props) {
   const todoProgress = (checkdeTodo / allTodo) * 100;
 
   const progressColor = color.rgb.replace(')', ',0.3)');
-  console.log(color);
 
   return (
     <div className="calendar-card">

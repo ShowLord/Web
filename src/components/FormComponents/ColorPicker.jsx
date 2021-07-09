@@ -5,12 +5,9 @@ export default function ColorPicker(props) {
   const { pickColor, defaultColor } = props;
   const [chosenColor, setChosenColor] = useState(defaultColor.colorName);
 
-  console.log(defaultColor);
-
   const atPickColor = (e) => {
     pickColor({ colorName: e.target.ariaLabel, rgb: getComputedStyle(e.target).backgroundColor });
     setChosenColor(e.target.ariaLabel);
-    console.log(defaultColor.color);
   };
 
   return (

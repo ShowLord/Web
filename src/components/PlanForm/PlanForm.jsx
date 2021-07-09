@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useReducer, useRef } from 'react';
+import reducer from './usePlanReducer';
 import ColorPicker from '../FormComponents/ColorPicker';
 import { timeNow } from '../Calendar/DateString';
 import UploadImg from './UploadImg/UploadImg';
@@ -13,30 +14,43 @@ export default function Plan(props) {
     planWindow, getPlanInfo, planDate, calendarList, getImgPreview, checkedList,
   } = props;
 
+  const creatPlanState = {
+    title: null,
+    date: planDate,
+    time: '',
+    description: null,
+    imgList: null,
+    color: checkedList[0].color,
+    todoList: null,
+    addTo: null,
+    planId: `${Math.floor(Math.random() * 1000)}`,
+    comments: [],
+  };
+
+  const [planState, dispatch] = useReducer(reducer, creatPlanState);
+
   const [datePicker, setDatePicker] = useState(false);
   const [timePicker, setTimePicker] = useState(false);
-  const [dateValue, setDateValue] = useState(planDate);
-  const [timeValue, setTimeValue] = useState('');
-  const [img, setImg] = useState([]);
-  const [color, setColor] = useState(checkedList[0].color);
-  const [todoList, setTodoList] = useState();
-  const [addTo, setAddTo] = useState();
+
   const titleRef = useRef();
   const descriptionRef = useRef();
-  const dateDefault = `${dateValue} ${timeValue}`;
 
   const timeSwitch = () => {
-    if (timeValue === '') {
-      setTimeValue(timeNow);
+    if (planState.time === '') {
+      dispatch({ type: 'time', value: timeNow });
       setTimePicker(true);
     } else {
-      setTimeValue('');
+      dispatch({ type: 'time', value: '' });
       setTimePicker(false);
     }
   };
 
-  const getTime = (value) => {
-    setTimeValue(value);
+  const getDateValue = (value) => {
+    dispatch({ type: 'date', value });
+  };
+
+  const getTimeValue = (value) => {
+    dispatch({ type: 'time', value });
   };
 
   const closeItem = (e) => {
@@ -47,43 +61,32 @@ export default function Plan(props) {
     planWindow(false);
   };
 
-  const pickColor = (obj) => {
-    setColor(obj);
+  const getColor = (value) => {
+    dispatch({ type: 'color', value });
   };
 
-  const getImgList = (list) => {
-    setImg(list);
+  const getImgList = (value) => {
+    dispatch({ type: 'imgList', value });
   };
 
-  const getTodoList = (list) => {
-    setTodoList(list);
+  const getTodoList = (value) => {
+    dispatch({ type: 'todoList', value });
   };
 
-  const getPickedCalendar = (list) => {
-    setAddTo(list);
+  const getPickedCalendar = (value) => {
+    dispatch({ type: 'addTo', value });
   };
 
   const atSubmit = () => {
     const title = titleRef.current.value === '' ? '未命名的標題' : titleRef.current.value;
-
-    const planInfo = {
-      title,
-      date: dateValue,
-      time: timeValue,
-      description: descriptionRef.current.value,
-      imgList: img,
-      color,
-      todoList: todoList.filter((ele) => (ele.value !== null)),
-      addTo,
-      planId: `${dateValue}${timeValue}${Math.floor(Math.random() * 100)}`,
-      comments: [],
-    };
+    planState.title = title;
+    planState.description = descriptionRef.current.value;
 
     const arr = [];
-    const count = planInfo.addTo.length;
+    const count = planState.addTo.length;
     for (let i = 0; i < count; i += 1) {
-      const copy = { ...planInfo };
-      copy.addTo = planInfo.addTo[i];
+      const copy = { ...planState };
+      copy.addTo = planState.addTo[i];
       arr.push(copy);
     }
     getPlanInfo(arr);
@@ -96,10 +99,6 @@ export default function Plan(props) {
     } else {
       setDatePicker(false);
     }
-  };
-
-  const getDateValue = (value) => {
-    setDateValue(value);
   };
 
   const datePickerRef = useRef();
@@ -119,13 +118,13 @@ export default function Plan(props) {
         </svg>
         <div className="form">
           <div className="section"> 新增計畫</div>
-          <ColorPicker pickColor={pickColor} defaultColor={color} />
+          <ColorPicker pickColor={getColor} defaultColor={planState.color} />
           <div className="scroll-content">
             <label htmlFor="plan-title">標題
               <input type="text" name="title" id="plan-title" ref={titleRef} />
             </label>
             <label htmlFor="plan-time">時間
-              <input className="pointer dateButton" type="button" name="title" defaultValue={dateDefault} onClick={datePickerBox} />
+              <input className="pointer dateButton" type="button" name="title" defaultValue={`${planState.date} ${planState.time}`} onClick={datePickerBox} />
               <svg className="time-switch pointer" onClick={timeSwitch} ref={timePickerRef} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M15 25.5C20.799 25.5 25.5 20.799 25.5 15C25.5 9.20101 20.799 4.5 15 4.5C9.20101 4.5 4.5 9.20101 4.5 15C4.5 20.799 9.20101 25.5 15 25.5ZM23 15C23 19.4183 19.4183 23 15 23C10.5817 23 7 19.4183 7 15C7 10.5817 10.5817 7 15 7C19.4183 7 23 10.5817 23 15ZM16 11C16 10.4477 15.5523 10 15 10C14.4477 10 14 10.4477 14 11V15C14 15.5523 14.4477 16 15 16H19C19.5523 16 20 15.5523 20 15C20 14.4477 19.5523 14 19 14H16V11Z" fill="#4C5760" fillOpacity="0.95" />
               </svg>
@@ -133,8 +132,8 @@ export default function Plan(props) {
             {datePicker
               && (
               <div className="date-picker" ref={datePickerRef}>
-                <DatePicker getDateValue={getDateValue} datePickerBox={datePickerBox} dateValue={dateValue} timePicker={timePicker} />
-                {timePicker && <TimePicker timeValue={timeValue} getTime={getTime} />}
+                <DatePicker getDateValue={getDateValue} datePickerBox={datePickerBox} dateValue={planState.date} timePicker={timePicker} />
+                {timePicker && <TimePicker timeValue={planState.time} getTime={getTimeValue} />}
               </div>
               )}
             <label htmlFor="plan-detail">描述

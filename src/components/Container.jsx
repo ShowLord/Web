@@ -46,8 +46,8 @@ export default function Container() {
     setCheckedList(calendarList.filter((ele) => (ele.isChecked === true)));
   };
 
-  console.log(calendarList);
-  // console.log(allPlanList);
+  // console.log(calendarList);
+  console.log(allPlanList);
 
   const getPlanInfo = (ele) => {
     setAllPlanList(allPlanList.concat(ele));
