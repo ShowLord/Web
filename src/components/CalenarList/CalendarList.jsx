@@ -55,7 +55,7 @@ export default function CalendarList(props) {
         </svg>
         {allTodo >= 1 && (
         <div className="progress-bar" style={{ backgroundColor: progressColor }}>
-          <div className="todo-progress" style={{ width: `${todoProgress}%`, backgroundColor: color }} />
+          <div className="todo-progress" style={{ width: `${todoProgress}%`, backgroundColor: color.rgb }} />
         </div>
         )}
       </div>
