@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Album from './Album';
 
 export default function UploadImg(props) {
-  const { getImgList, getImgPreview } = props;
-  const [imgList, setImgList] = useState([]);
+  const { getImgList, getImgPreview, defaultImg } = props;
+  const list = defaultImg || [];
+  const [imgList, setImgList] = useState(list);
   const handleFiles = (e) => {
     for (let i = 0; i < e.target.files.length; i += 1) {
       const img = e.target.files[i];

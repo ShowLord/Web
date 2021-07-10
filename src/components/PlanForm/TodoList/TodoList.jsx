@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import TodoItem from './TodoItem';
 
 export default function TodoList(props) {
-  const { getTodoList } = props;
-  const [todoItem, setTodoItem] = useState([]);
+  const { getTodoList, defaultTodo } = props;
+  const list = defaultTodo || [];
+  const [todoItem, setTodoItem] = useState(list);
 
   const addTodoItem = () => {
-    setTodoItem(todoItem.concat({ value: null, id: `${Date.now()}`, isChecked: false }));
+    setTodoItem(todoItem.concat({ value: '', id: `${Date.now()}`, isChecked: false }));
   };
 
   const removeItem = (item) => {

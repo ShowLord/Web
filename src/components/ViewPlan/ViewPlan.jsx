@@ -5,7 +5,7 @@ import Comment from './Comment';
 
 export default function ViewPlan(props) {
   const {
-    plan, viewPlanStatus, todoChecked, getImgPreview, getComments,
+    plan, viewPlanStatus, todoChecked, getImgPreview, getComments, editPlan,
   } = props;
 
   const [commentsList, setCommentsList] = useState(plan.comments);
@@ -16,6 +16,10 @@ export default function ViewPlan(props) {
   };
   const closeIcon = () => {
     viewPlanStatus(false);
+  };
+
+  const atEdit = () => {
+    editPlan(true);
   };
 
   const replyRef = useRef();
@@ -34,9 +38,6 @@ export default function ViewPlan(props) {
     }
   };
 
-  console.log(commentsList);
-  console.log(plan);
-
   return (
     <div className="mask" onClick={closeItem}>
       <div className="plan-window view-plan">
@@ -46,7 +47,7 @@ export default function ViewPlan(props) {
         <div className="form">
           <div className="title">
             <span style={{ color: plan.color.rgb }}>{plan.title}</span>
-            <svg className="edit pointer" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg onClick={atEdit} className="edit pointer" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="path-1-inside-1" fill="white">
                 <path fillRule="evenodd" clipRule="evenodd" d="M23.7931 4.0196C23.23 3.45649 22.317 3.45649 21.7539 4.0196L18.5663 7.20721L23.1416 11.7826L26.3292 8.59496C26.8923 8.03185 26.8923 7.11887 26.3292 6.55576L23.7931 4.0196ZM16.9068 8.86665L21.4822 13.442L10.5435 24.3807L10.5434 24.3807L6.1019 25.3976C5.60528 25.5113 5.1506 25.0881 5.22851 24.5846L5.9681 19.8054L5.96808 19.8054L16.9068 8.86665Z" />
               </mask>

@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useReducer, useRef } from 'react';
-import reducer from './usePlanReducer';
-import ColorPicker from '../FormComponents/ColorPicker';
-import { timeNow } from '../Calendar/DateString';
-import UploadImg from './UploadImg/UploadImg';
-import DatePicker from './DatePicker/DatePicker';
-import TimePicker from './DatePicker/TimePicker';
-import CalendarPicker from './CalendarPicker/CalendarPicker';
-import TodoList from './TodoList/TodoList';
+import reducer from '../usePlanReducer';
+import ColorPicker from '../../FormComponents/ColorPicker';
+import { timeNow } from '../../Calendar/DateString';
+import UploadImg from '../UploadImg/UploadImg';
+import DatePicker from '../DatePicker/DatePicker';
+import TimePicker from '../DatePicker/TimePicker';
+import CalendarPicker from '../CalendarPicker/CalendarPicker';
+import TodoList from '../TodoList/TodoList';
 
-export default function Plan(props) {
+export default function AddPlanForm(props) {
   const {
     planWindow, getPlanInfo, planDate, calendarList, getImgPreview, checkedList,
   } = props;
@@ -71,22 +71,27 @@ export default function Plan(props) {
 
   const getTodoList = (value) => {
     dispatch({ type: 'todoList', value });
+    console.log(value);
   };
 
   const getPickedCalendar = (value) => {
     dispatch({ type: 'addTo', value });
   };
 
+  console.log('!!!!!!!!!!!!!');
+
   const atSubmit = () => {
     const title = titleRef.current.value === '' ? '未命名的標題' : titleRef.current.value;
     planState.title = title;
     planState.description = descriptionRef.current.value;
+    planState.todoList = planState.todoList.filter((ele) => ele.value !== '');
 
     const arr = [];
     const count = planState.addTo.length;
     for (let i = 0; i < count; i += 1) {
       const copy = { ...planState };
       copy.addTo = planState.addTo[i];
+      copy.planId = `${Math.floor(Math.random() * 1000)}`;
       arr.push(copy);
     }
     getPlanInfo(arr);
