@@ -76,6 +76,12 @@ export default function Container() {
     setViewPlan(true);
   };
 
+  const getDelPlan = (id) => {
+    setAllPlanList(allPlanList.filter((ele) => ele.planId !== id));
+    setViewPlan(false);
+    setEditPlan(false);
+  };
+
   const viewPlanStatus = (status) => {
     if (status) {
       setViewPlan(true);
@@ -120,7 +126,7 @@ export default function Container() {
       {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
       {addPlan && <AddPlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} checkedList={checkedList} />}
       {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} getComments={getComments} editPlan={getEditPlan} />}
-      {editPlan && <EditPlanForm planWindow={planWindow} getEditPlanInfo={getEditPlanInfo} getImgPreview={getImgPreview} plan={plan} />}
+      {editPlan && <EditPlanForm planWindow={planWindow} getEditPlanInfo={getEditPlanInfo} getImgPreview={getImgPreview} plan={plan} getDelPlan={getDelPlan} />}
       {(isPreviewing.status && (addPlan || viewPlan)) && (
         <div className="img-mask" onClick={(e) => (setIsPreviewing({ imgSrc: null, status: false }))}>
           <img

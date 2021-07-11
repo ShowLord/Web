@@ -71,14 +71,11 @@ export default function AddPlanForm(props) {
 
   const getTodoList = (value) => {
     dispatch({ type: 'todoList', value });
-    console.log(value);
   };
 
   const getPickedCalendar = (value) => {
     dispatch({ type: 'addTo', value });
   };
-
-  console.log('!!!!!!!!!!!!!');
 
   const atSubmit = () => {
     const title = titleRef.current.value === '' ? '未命名的標題' : titleRef.current.value;

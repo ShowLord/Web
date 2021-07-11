@@ -269,7 +269,20 @@ button{
     .section{
         color: #393939;
         font-weight: 700;
-        font-size: 45px;
+        font-size: 35px;
+        display: flex;
+        align-items: flex-end;
+
+    }
+
+    .section span{
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .section .del{
+       height: 30px;
+       margin-left: 10px;
     }
 
     .close{
