@@ -62,9 +62,9 @@ export default function Container() {
     setCheckedList(calendarList.filter((ele) => (ele.isChecked === true)));
   };
 
-  // console.log(calendarList);
-  console.log(allPlanList);
-  console.log(plan);
+  console.log(calendarList);
+  // console.log(allPlanList);
+  // console.log(plan);
 
   const getPlanInfo = (ele) => {
     setAllPlanList(allPlanList.concat(ele));
@@ -89,6 +89,11 @@ export default function Container() {
   const getPlan = (obj) => {
     setPlan(obj);
     setViewPlan(true);
+  };
+
+  const getDelCalendar = (id) => {
+    setCalendarList(calendarList.filter((ele) => ele.calendarId !== id));
+    setEditCalendar(false);
   };
 
   const getDelPlan = (id) => {
@@ -139,7 +144,7 @@ export default function Container() {
       <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} getEditCalendar={getEditCalendar} />
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <AddCalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
-      {editCalendar && <EditCalendarForm editCalendarWindow={editCalendarWindow} getEditCalendarInfo={getEditCalendarInfo} editTarget={editTarget} />}
+      {editCalendar && <EditCalendarForm editCalendarWindow={editCalendarWindow} getEditCalendarInfo={getEditCalendarInfo} editTarget={editTarget} getDelCalendar={getDelCalendar} />}
       {addPlan && <AddPlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} checkedList={checkedList} />}
       {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} getComments={getComments} editPlan={getEditPlan} />}
       {editPlan && <EditPlanForm planWindow={planWindow} getEditPlanInfo={getEditPlanInfo} getImgPreview={getImgPreview} plan={plan} getDelPlan={getDelPlan} />}
