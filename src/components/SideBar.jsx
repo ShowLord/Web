@@ -3,7 +3,7 @@ import CalendarList from './CalenarList/CalendarList';
 
 export default function SideBar(props) {
   const {
-    calendarWindow, calendarList, getCheckedStatus, allPlanList,
+    calendarWindow, calendarList, getCheckedStatus, allPlanList, getEditCalendar,
   } = props;
 
   const atAddCalendar = () => {
@@ -26,6 +26,7 @@ export default function SideBar(props) {
             index={index}
             allPlanList={allPlanList}
             calendarId={ele.calendarId}
+            getEditCalendar={getEditCalendar}
           />
         ))
         }

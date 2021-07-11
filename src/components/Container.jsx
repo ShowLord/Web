@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Main from './Main';
 import SideBar from './SideBar';
-import CalendarForm from './CalendarForm/CalendarForm';
+import AddCalendarForm from './CalendarForm/AddCalendarForm';
+import EditCalendarForm from './CalendarForm/EditCalendarForm';
 import AddPlanForm from './PlanForm/PlanForm/AddPlanForm';
 import EditPlanForm from './PlanForm/PlanForm/EditPlanForm';
 import ViewPlan from './ViewPlan/ViewPlan';
@@ -20,13 +21,21 @@ export default function Container() {
   const [viewPlan, setViewPlan] = useState();
   const [isPreviewing, setIsPreviewing] = useState({ imgSrc: null, status: false });
   const [editPlan, setEditPlan] = useState(false);
+  const [editCalendar, setEditCalendar] = useState(false);
+  const [editTarget, setEditTarget] = useState();
 
   const calendarWindow = (status) => {
-    if (status) {
-      setAddCalendar(true);
-    } else {
-      setAddCalendar(false);
-    }
+    setAddCalendar(status);
+    // setEditCalendar(status);
+  };
+
+  const editCalendarWindow = (status) => {
+    setEditCalendar(status);
+  };
+
+  const getEditCalendar = (id, status) => {
+    setEditCalendar(status);
+    setEditTarget(calendarList.find((ele) => ele.calendarId === id));
   };
 
   const planWindow = (status) => {
@@ -65,6 +74,12 @@ export default function Container() {
     const idx = allPlanList.findIndex((obj) => obj.planId === ele.planId);
     allPlanList[idx] = ele;
     setPlan(ele);
+  };
+
+  const getEditCalendarInfo = (ele) => {
+    const idx = calendarList.findIndex((obj) => obj.calendarId === ele.calendarId);
+    calendarList[idx] = ele;
+    setEditCalendar(false);
   };
 
   const getPlanDate = (time) => {
@@ -121,9 +136,10 @@ export default function Container() {
 
   return (
     <div className="container">
-      <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} />
+      <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} getEditCalendar={getEditCalendar} />
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
-      {addCalendar && <CalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
+      {addCalendar && <AddCalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
+      {editCalendar && <EditCalendarForm editCalendarWindow={editCalendarWindow} getEditCalendarInfo={getEditCalendarInfo} editTarget={editTarget} />}
       {addPlan && <AddPlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} checkedList={checkedList} />}
       {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} getComments={getComments} editPlan={getEditPlan} />}
       {editPlan && <EditPlanForm planWindow={planWindow} getEditPlanInfo={getEditPlanInfo} getImgPreview={getImgPreview} plan={plan} getDelPlan={getDelPlan} />}
