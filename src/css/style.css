@@ -301,18 +301,18 @@ button{
     .color-picker button{
         width: 30px;
         height: 30px;
-        border: none;
+        
         border-radius: 20px;
     }
 
     .color-picker button:hover{
         cursor: pointer;
-        border: #BBAF8C 2px solid ;
+        /* border: #BBAF8C 2px solid ; */
     }
 
-    .color-picker button.chosen{
+    /* .color-picker button.chosen{
         border: #BBAF8C 2px solid ;
-    }
+    } */
 
     .color-picker .red{background-color:#FF8A8C;}
     .color-picker .yellow{background-color:#FFCD6D;}

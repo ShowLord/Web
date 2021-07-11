@@ -3,20 +3,24 @@ import classnames from 'classnames';
 
 export default function ColorPicker(props) {
   const { pickColor, defaultColor } = props;
-  const [chosenColor, setChosenColor] = useState(defaultColor.colorName);
+  const [chosenColor, setChosenColor] = useState(defaultColor);
 
   const atPickColor = (e) => {
-    pickColor({ colorName: e.target.ariaLabel, rgb: getComputedStyle(e.target).backgroundColor });
-    setChosenColor(e.target.ariaLabel);
+    const colorItem = { colorName: e.target.ariaLabel, rgb: getComputedStyle(e.target).backgroundColor };
+    pickColor(colorItem);
+    setChosenColor(colorItem);
   };
+
+  const chosenStyle = { boxShadow: `0px 0px 0px 3px ${chosenColor.rgb.replace(')', ',0.3)')}` };
+  const intialSyle = { boxShadow: 'none' };
 
   return (
     <div className="color-picker ">
-      <button aria-label="red" className={classnames('red', { chosen: chosenColor === 'red' })} onClick={atPickColor} />
-      <button aria-label="yellow" className={classnames('yellow', { chosen: chosenColor === 'yellow' })} onClick={atPickColor} />
-      <button aria-label="green" className={classnames('green', { chosen: chosenColor === 'green' })} onClick={atPickColor} />
-      <button aria-label="blue" className={classnames('blue', { chosen: chosenColor === 'blue' })} onClick={atPickColor} />
-      <button aria-label="purple" className={classnames('purple', { chosen: chosenColor === 'purple' })} onClick={atPickColor} />
+      <button aria-label="red" className="red" style={chosenColor.colorName === 'red' ? chosenStyle : intialSyle} onClick={atPickColor} />
+      <button aria-label="yellow" className="yellow" style={chosenColor.colorName === 'yellow' ? chosenStyle : intialSyle} onClick={atPickColor} />
+      <button aria-label="green" className="green" style={chosenColor.colorName === 'green' ? chosenStyle : intialSyle} onClick={atPickColor} />
+      <button aria-label="blue" className="blue" style={chosenColor.colorName === 'blue' ? chosenStyle : intialSyle} onClick={atPickColor} />
+      <button aria-label="purple" className="purple" style={chosenColor.colorName === 'purple' ? chosenStyle : intialSyle} onClick={atPickColor} />
     </div>
   );
 }
