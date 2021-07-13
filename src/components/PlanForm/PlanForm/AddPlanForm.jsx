@@ -20,7 +20,7 @@ export default function AddPlanForm(props) {
     time: '',
     description: null,
     imgList: null,
-    color: checkedList[0].color,
+    color: checkedList.length >= 1 ? checkedList[0].color : calendarList[0].color,
     todoList: null,
     addTo: null,
     planId: `${Math.floor(Math.random() * 1000)}`,

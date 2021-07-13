@@ -84,7 +84,6 @@ export default function EditPlanForm(props) {
     planState.todoList = planState.todoList.filter((ele) => ele.value !== '');
 
     getEditPlanInfo(planState);
-    console.log(planState);
     planWindow(false);
   };
 

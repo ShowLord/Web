@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import '../../css/calendar-list.css';
 import React, { useState, useEffect } from 'react';
 
 export default function CalendarList(props) {
@@ -39,10 +40,10 @@ export default function CalendarList(props) {
   return (
     <div className="calendar-card">
       <div className="boxTrigger pointer" onClick={onToggle}>
-        <svg className="checkbox" width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="checkbox" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.67139" y="1" width="31.6" height="31.6" rx="7" fill="white" stroke={color.rgb} strokeWidth="2" />
         </svg>
-        <svg className={classNames('checked', { active: toggle })} width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className={classNames('checked', { active: toggle })} viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="path-1-outside-1" maskUnits="userSpaceOnUse" x="0" y="0" width="31" height="24" fill="black">
             <rect fill="white" width="31" height="24" />
             <path fillRule="evenodd" clipRule="evenodd" d="M29.5173 4.27178C30.2333 3.44489 30.1422 2.19553 29.3138 1.48126C28.4854 0.766998 27.2334 0.858301 26.5174 1.6852L11.8254 18.652L4.05533 10.8986C3.28117 10.1261 2.026 10.1261 1.25184 10.8986C0.477678 11.6711 0.47768 12.9236 1.25184 13.6961L10.1911 22.6162C10.7794 23.2032 11.6454 23.3441 12.3671 23.039C12.9202 23.0365 13.4695 22.8044 13.8596 22.3538L29.5173 4.27178Z" />

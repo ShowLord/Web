@@ -1,0 +1,77 @@
+.calendar-list{
+    margin-top: 17%;
+}
+
+.calendar-card{
+    width: 242px;
+    height: 107px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 4px 5px rgba(76, 87, 96, 0.08);
+    border-radius: 20px;   
+    position: relative;
+    margin: 0px 0px 24px 59px;
+}
+
+.calendar-card .content{
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-card .title{
+    color: #393939;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 16px 0 0 16px;
+    letter-spacing: .5px;
+}
+
+.calendar-card .edit{
+    width: 15px;
+    position: absolute;
+    top: 16px;
+    right: 18px;
+}
+
+.calendar-card .edit:hover{
+    cursor: pointer;
+}
+
+.calendar-card .boxTrigger{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: -51px;
+    top: 0;
+    display: flex; 
+    align-items: flex-start;
+    justify-content: center;   
+}
+
+.calendar-card .checkbox{
+    width: 24px;
+}
+.calendar-card .checked{
+    position: absolute;
+    top: 1px;
+    left: 9px;
+    width: 22px;
+    display: none;
+}
+
+
+
+.calendar-card .checked.active{
+    display: block;
+}
+
+.calendar-card .progress-bar{
+    width: 131px;
+    height: 12px;
+    margin: 41px 0 0 16px;
+    border-radius: 20px;
+}
+
+.progress-bar .todo-progress{
+    height: 12px;
+    border-radius: 20px;
+}
