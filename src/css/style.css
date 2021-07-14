@@ -36,7 +36,7 @@ button{
 
 .side-bar{
     background-color: #FCFCFC;
-    width: 25%;
+    width: 360px;
     height: 100vh;
     display: flex;
     flex-direction: column; 
@@ -300,7 +300,7 @@ button{
 
     .close{
         position:absolute;
-        width: 60px;
+        width: 50px;
         right: 30px;
         top: 30px;
     }

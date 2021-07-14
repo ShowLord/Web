@@ -5,6 +5,7 @@ export default function CalendarPicker(props) {
   const { calendarList, getPickedCalendar } = props;
   const [calendarPicker, setCalendarPicker] = useState(false);
   const [pickedCalendar, setPickedCalendar] = useState(calendarList.filter((obj) => obj.isChecked === true));
+  const [unPickedCalendar, setUnPickedCalendar] = useState(calendarList.filter((obj) => obj.isChecked === false));
 
   const calendarPickerBox = (status) => {
     if (status && calendarList.length >= 1) {
@@ -16,13 +17,19 @@ export default function CalendarPicker(props) {
 
   const choseCalendar = (e) => {
     if (!pickedCalendar.some((obj) => obj.calendarId === e.currentTarget.id)) {
-      setPickedCalendar(pickedCalendar.concat(calendarList.find((obj) => obj.calendarId === e.currentTarget.id)));
+      const arr = pickedCalendar.concat(calendarList.find((obj) => obj.calendarId === e.currentTarget.id));
+      arr.sort((a, b) => calendarList.indexOf(a) - calendarList.indexOf(b));
+      setPickedCalendar(arr);
+      setUnPickedCalendar(unPickedCalendar.filter((obj) => obj.calendarId !== e.currentTarget.id));
     }
     calendarPickerBox(false);
   };
 
   const removeCalendar = (e) => {
     setPickedCalendar(pickedCalendar.filter((obj) => obj.calendarId !== e.currentTarget.id));
+    const arr = unPickedCalendar.concat(calendarList.find((obj) => obj.calendarId === e.currentTarget.id));
+    arr.sort((a, b) => calendarList.indexOf(a) - calendarList.indexOf(b));
+    setUnPickedCalendar(arr);
   };
 
   useEffect(() => {
@@ -55,7 +62,7 @@ export default function CalendarPicker(props) {
       {calendarPicker && (
       <div className="caldendar-picker">
         {
-            calendarList.map((obj) => (
+            unPickedCalendar.map((obj) => (
               <div className="chose-calendar pointer" onClick={choseCalendar} id={obj.calendarId}>
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <ellipse cx="6.58888" cy="6.15805" rx="5.59816" ry="5.57895" fill={obj.color.rgb} />

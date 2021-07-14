@@ -20,7 +20,7 @@
 .calendar-card .title{
     color: #393939;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
     margin: 16px 0 0 16px;
     letter-spacing: .5px;
 }
@@ -74,4 +74,8 @@
 .progress-bar .todo-progress{
     height: 12px;
     border-radius: 20px;
+}
+
+[draggable="true"]{
+    cursor: grab;
 }
