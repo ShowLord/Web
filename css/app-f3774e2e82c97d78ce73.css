@@ -76,6 +76,11 @@
     height: 12px;
     border-radius: 20px;
 }
+
+[draggable="true"]{
+    cursor: grab;
+}
+
 .calendar-window{
     height: 100vh;
     width: 464px;
@@ -170,7 +175,7 @@ button{
 
 .side-bar{
     background-color: #FCFCFC;
-    width: 25%;
+    width: 360px;
     height: 100vh;
     display: flex;
     flex-direction: column; 
