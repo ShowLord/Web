@@ -131,6 +131,10 @@ export default function Container() {
 
   console.log('render');
 
+  const getCalendarSort = (id) => {
+    console.log(id);
+  };
+
   useEffect(() => {
     const showPlan = [];
     for (let i = 0; i < checkedList.length; i += 1) {
@@ -141,7 +145,7 @@ export default function Container() {
 
   return (
     <div className="container">
-      <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} getEditCalendar={getEditCalendar} />
+      <SideBar calendarWindow={calendarWindow} calendarList={calendarList} getCheckedStatus={getCheckedStatus} allPlanList={allPlanList} getEditCalendar={getEditCalendar} getCalendarSort={getCalendarSort} />
       <Main planWindow={planWindow} planList={planList} getPlanDate={getPlanDate} getPlan={getPlan} />
       {addCalendar && <AddCalendarForm calendarWindow={calendarWindow} getCalendarInfo={getCalendarInfo} />}
       {editCalendar && <EditCalendarForm editCalendarWindow={editCalendarWindow} getEditCalendarInfo={getEditCalendarInfo} editTarget={editTarget} getDelCalendar={getDelCalendar} />}

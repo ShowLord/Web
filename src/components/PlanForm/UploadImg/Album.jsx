@@ -10,6 +10,7 @@ export default function UploadImg(props) {
 
   const onRemove = () => {
     removeImg(idx);
+    getImgPreview(src, false);
   };
 
   const onView = (e) => {

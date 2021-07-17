@@ -1,12 +1,14 @@
 import classNames from 'classnames';
 import '../../css/calendar-list.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function CalendarList(props) {
   const {
-    title, color, isChecked, getCheckedStatus, index, allPlanList, calendarId, getEditCalendar,
+    title, color, isChecked, getCheckedStatus, index, allPlanList, calendarId, getEditCalendar, getCalendarSort,
   } = props;
   const [toggle, setToggle] = useState(isChecked);
+  // const [dragId, setDragId] = useState();
+
   const onToggle = () => {
     if (toggle) {
       setToggle(false);
@@ -37,8 +39,25 @@ export default function CalendarList(props) {
     getEditCalendar(calendarId, true);
   };
 
+  const atDrag = (e) => {
+    e.target.dataset.isdrag = 'dragging';
+    console.log(index);
+    // setDragId(e.target.id);
+  };
+
+  const atDragEnd = (e) => {
+    // getCalendarSort(dragId);
+  };
+
+  const atDragOver = (e) => {
+    console.log(e.target.dataIsdrag);
+    if (e.target.dataIsdrag !== 'dragging' && e.clientY > e.target.offsetTop + (e.target.clientHeight / 2)) {
+      console.log(index);
+    }
+  };
+
   return (
-    <div className="calendar-card" draggable="false">
+    <div className="calendar-card" draggable="true" id={calendarId} onDragStart={atDrag} onDragEnd={atDragEnd} onDragOver={atDragOver}>
       <div className="boxTrigger pointer" onClick={onToggle}>
         <svg className="checkbox" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.67139" y="1" width="31.6" height="31.6" rx="7" fill="white" stroke={color.rgb} strokeWidth="2" />
