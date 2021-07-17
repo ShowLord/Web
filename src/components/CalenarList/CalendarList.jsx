@@ -7,7 +7,7 @@ export default function CalendarList(props) {
     title, color, isChecked, getCheckedStatus, index, allPlanList, calendarId, getEditCalendar, getCalendarSort,
   } = props;
   const [toggle, setToggle] = useState(isChecked);
-  // const [dragId, setDragId] = useState();
+  const [dragIdx, setDragIdx] = useState();
 
   const onToggle = () => {
     if (toggle) {
@@ -41,23 +41,26 @@ export default function CalendarList(props) {
 
   const atDrag = (e) => {
     e.target.dataset.isdrag = 'dragging';
-    console.log(index);
+    e.dataTransfer.setData('text', index);
+    // console.log(index);
     // setDragId(e.target.id);
   };
 
-  const atDragEnd = (e) => {
-    // getCalendarSort(dragId);
+  const atDrop = (e) => {
+    const dragIndex = e.dataTransfer.getData('text');
+    getCalendarSort(dragIndex, index);
+    e.target.dataset.isdrag = 'null';
   };
 
   const atDragOver = (e) => {
-    console.log(e.target.dataIsdrag);
-    if (e.target.dataIsdrag !== 'dragging' && e.clientY > e.target.offsetTop + (e.target.clientHeight / 2)) {
-      console.log(index);
+    e.preventDefault();
+    if (e.target.dataset.isdrag !== 'dragging') {
+      // console.log(index);
     }
   };
 
   return (
-    <div className="calendar-card" draggable="true" id={calendarId} onDragStart={atDrag} onDragEnd={atDragEnd} onDragOver={atDragOver}>
+    <div className="calendar-card" draggable="true" id={calendarId} onDragStart={atDrag} onDrop={atDrop} onDragOver={atDragOver} data-isdrag="null">
       <div className="boxTrigger pointer" onClick={onToggle}>
         <svg className="checkbox" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.67139" y="1" width="31.6" height="31.6" rx="7" fill="white" stroke={color.rgb} strokeWidth="2" />

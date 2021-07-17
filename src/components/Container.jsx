@@ -23,7 +23,9 @@ export default function Container() {
   const [editPlan, setEditPlan] = useState(false);
   const [editCalendar, setEditCalendar] = useState(false);
   const [editTarget, setEditTarget] = useState();
+  const [calendarSort, setCalendarSort] = useState(calendarList.map((ele) => (ele.calendarId)));
 
+  console.log(calendarSort);
   const calendarWindow = (status) => {
     setAddCalendar(status);
     // setEditCalendar(status);
@@ -131,9 +133,12 @@ export default function Container() {
 
   console.log('render');
 
-  const getCalendarSort = (id) => {
-    console.log(id);
+  const getCalendarSort = (dragIdx, dropIdx) => {
+    const target = calendarSort.splice(dragIdx, 1);
+    calendarSort.splice(dropIdx, 0, target);
+    setCalendarSort(calendarSort.flat());
   };
+  calendarList.sort((a, b) => calendarSort.indexOf(a.calendarId) - calendarSort.indexOf(b.calendarId));
 
   useEffect(() => {
     const showPlan = [];
@@ -142,6 +147,10 @@ export default function Container() {
     }
     setPlanList(showPlan.flat());
   }, [checkedList, allPlanList, plan]);
+
+  useEffect(() => {
+    setCalendarSort(calendarList.map((ele) => (ele.calendarId)));
+  }, [calendarList]);
 
   return (
     <div className="container">
