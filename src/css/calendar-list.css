@@ -1,6 +1,12 @@
 .calendar-list{
     margin-top: 17%;
+    height: 60vh;
+    overflow: scroll;
 }
+
+.calendar-list::-webkit-scrollbar{
+    display: none;
+  }
 
 .calendar-card{
     width: 242px;

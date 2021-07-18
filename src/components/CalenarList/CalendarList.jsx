@@ -7,7 +7,6 @@ export default function CalendarList(props) {
     title, color, isChecked, getCheckedStatus, index, allPlanList, calendarId, getEditCalendar, getCalendarSort,
   } = props;
   const [toggle, setToggle] = useState(isChecked);
-  const [dragIdx, setDragIdx] = useState();
 
   const onToggle = () => {
     if (toggle) {
@@ -52,15 +51,12 @@ export default function CalendarList(props) {
     e.target.dataset.isdrag = 'null';
   };
 
-  const atDragOver = (e) => {
-    e.preventDefault();
-    if (e.target.dataset.isdrag !== 'dragging') {
-      // console.log(index);
-    }
-  };
+  // const atDragOver = (e) => {
+  //   e.preventDefault();
+  // };
 
   return (
-    <div className="calendar-card" draggable="true" id={calendarId} onDragStart={atDrag} onDrop={atDrop} onDragOver={atDragOver} data-isdrag="null">
+    <div className="calendar-card" draggable="true" id={calendarId} onDragStart={atDrag} onDrop={atDrop} data-isdrag="null">
       <div className="boxTrigger pointer" onClick={onToggle}>
         <svg className="checkbox" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.67139" y="1" width="31.6" height="31.6" rx="7" fill="white" stroke={color.rgb} strokeWidth="2" />
