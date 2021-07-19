@@ -137,14 +137,13 @@ export default function Container() {
     const target = calendarSort.splice(dragIdx, 1);
     calendarSort.splice(dropIdx, 0, target);
     setCalendarSort(calendarSort.flat());
-
     calendarList.sort((a, b) => calendarSort.indexOf(a.calendarId) - calendarSort.indexOf(b.calendarId));
   };
 
   useEffect(() => {
     const showPlan = [];
     for (let i = 0; i < checkedList.length; i += 1) {
-      showPlan.push(allPlanList.filter((ele) => (ele.addTo === (checkedList[i].calendarId))));
+      showPlan.push(allPlanList.filter((ele) => (ele.addTo.calendarId === (checkedList[i].calendarId))));
     }
     setPlanList(showPlan.flat());
   }, [checkedList, allPlanList, plan]);

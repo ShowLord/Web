@@ -33,7 +33,7 @@ export default function CalendarPicker(props) {
   };
 
   useEffect(() => {
-    getPickedCalendar(pickedCalendar.map((ele) => (ele.calendarId)));
+    getPickedCalendar(pickedCalendar);
   }, [pickedCalendar]);
 
   return (
