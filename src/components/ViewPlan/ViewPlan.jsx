@@ -38,8 +38,6 @@ export default function ViewPlan(props) {
     }
   };
 
-  console.log(plan.description === '');
-
   return (
     <div className="mask" onClick={closeItem}>
       <div className="plan-window view-plan">

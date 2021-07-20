@@ -62,7 +62,7 @@ export default function CalendarPicker(props) {
       <div className="caldendar-picker">
         {
             unPickedCalendar.map((obj) => (
-              <div className="chose-calendar pointer" onClick={choseCalendar} id={obj.calendarId} style={{ backgroundColor: obj.color.rgb.replace(')', ',0.2)') }}>
+              <div className="chose-calendar pointer" onClick={choseCalendar} id={obj.calendarId} key={obj.calendarId} style={{ backgroundColor: obj.color.rgb.replace(')', ',0.2)') }}>
 
                 {obj.title}
               </div>

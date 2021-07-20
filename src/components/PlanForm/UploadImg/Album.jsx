@@ -26,6 +26,7 @@ export default function UploadImg(props) {
         alt="img"
         onMouseOver={() => setIsHovered(true)}
       />
+
       {isHovered && (
         <div onClick={onView} className="img-hover pointer" onMouseLeave={() => setIsHovered(false)}>
           <svg onClick={onRemove} className="del pointer" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,6 +39,7 @@ export default function UploadImg(props) {
           </svg>
         </div>
       )}
+
     </div>
   );
 }

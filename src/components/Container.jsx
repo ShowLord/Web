@@ -6,6 +6,7 @@ import EditCalendarForm from './CalendarForm/EditCalendarForm';
 import AddPlanForm from './PlanForm/PlanForm/AddPlanForm';
 import EditPlanForm from './PlanForm/PlanForm/EditPlanForm';
 import ViewPlan from './ViewPlan/ViewPlan';
+import ConfirmDialog from './Dialog/ConfirmDialog';
 
 export default function Container() {
   const [addCalendar, setAddCalendar] = useState(false);
@@ -161,6 +162,7 @@ export default function Container() {
       {addPlan && <AddPlanForm planWindow={planWindow} getPlanInfo={getPlanInfo} planDate={planDate} calendarList={calendarList} getImgPreview={getImgPreview} checkedList={checkedList} />}
       {viewPlan && <ViewPlan plan={plan} viewPlanStatus={viewPlanStatus} todoChecked={todoChecked} getImgPreview={getImgPreview} getComments={getComments} editPlan={getEditPlan} />}
       {editPlan && <EditPlanForm planWindow={planWindow} getEditPlanInfo={getEditPlanInfo} getImgPreview={getImgPreview} plan={plan} getDelPlan={getDelPlan} />}
+      <ConfirmDialog show={false} />
       {(isPreviewing.status && (addPlan || viewPlan)) && (
         <div className="img-mask" onClick={(e) => (setIsPreviewing({ imgSrc: null, status: false }))}>
           <img

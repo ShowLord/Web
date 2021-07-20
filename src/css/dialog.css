@@ -1,0 +1,55 @@
+.dialog-mask{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+}
+
+.dialog{
+    background-color: #FFE0E0;
+    border: 3px solid #D86767;
+    border-radius: 25px;
+    height: 128px;
+    width: 267px;
+    margin-top: 64px;
+    margin-left: 54%;
+}
+
+.dialog .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.dialog span{
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.dialog svg{
+    width: 30px;
+    margin-right: 13px;
+}
+
+.option{
+    margin: 29px 0 0 83px;
+    width: fit-content;
+}
+
+.cancel{
+    background-color: #FFE0E0;
+    border: 2px solid #D86767;
+    color: #D86767;
+    border-radius: 15px;
+    width: 68px;
+    height: 38px;
+}
+
+.confirm{
+    background-color: #D86767;
+    color: #FFFFFF;
+    border-radius: 15px;
+    width: 72px;
+    height: 42px;
+    margin-left: 16px;
+}
